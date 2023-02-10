@@ -1,0 +1,41 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.fields{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+input{
+  height: 2em;
+  outline: none;
+
+}
+.btn-container{
+  display: flex;
+  justify-content: flex-end;
+}
+button{
+  height: 2em;
+  width: 5em;
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 5px;
+  background-color: rgb(0, 0, 0);
+}
+
+.btn-reset{
+  background-color: rgb(69, 73, 86);
+  margin-right: 1em;
+}
+button:hover{
+  background-color: rgb(40, 55, 78);
+}
+h3{
+  margin-top: 1em;
+  color: rgb(66, 66, 167);
+  font-weight: bold;
+}

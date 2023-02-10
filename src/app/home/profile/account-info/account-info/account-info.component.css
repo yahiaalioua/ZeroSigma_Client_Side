@@ -1,0 +1,87 @@
+section{
+  border-radius: 2em;
+  width: 60vw;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 2em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  flex-shrink: 0;
+}
+.border-1{
+  border-bottom: 1px solid rgb(189, 189, 189);
+}
+.account-details{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  margin-bottom: 1em;
+}
+.full-name-input>*{
+  height: 30px;
+}
+input{
+  width: 70%;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border: 0.7px solid black;
+
+}
+input:focus{
+  background-color: white;
+  color: black;
+}
+.account-box{
+  font-size: 30px;
+  height: 30px;
+  width: 30px;
+}
+.flex1{
+  display: flex;
+  align-items: center;
+}
+.update-btn{
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+  width: 30%;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.update-btn:hover,:focus{
+  border: none;
+  outline: none;
+  transition: 0.5s;
+}
+.icon-res{
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+}
+p{font-size: 16px;}
+
+.reset-pass{
+  background: none;
+  border: none;
+  color: rgb(45, 126, 196);
+}
+.delate-acc-div{
+  width: 60%;
+}
+.delate-acc-div> button{
+  width: 100%;
+  height: 3em;
+  background-color: white;
+  border: 1px solid lightgray;
+}
+.delate-acc-div> button:hover,:focus{
+  background-color: rgb(71, 74, 83);
+  color: white;
+  transition: 0.5s;
+}
+
+
+

@@ -1,0 +1,31 @@
+<section>
+  <div class="title">
+    <h3 class="border-1">Account Details</h3>
+  </div>
+  <div class="account-details">
+    <div class="full-name-div border-1">
+      <h4>Full Name</h4>
+    </div>
+    <div class="full-name-input flex1">
+      <mat-icon class="account-box">account_box</mat-icon>
+      <input type="text" name="" id="" [value]="fullName$|async" #fullName>
+      <button type="button" class="update-btn" (click)="update(fullName.value)">Update</button>
+    </div>
+    <div class="login-credential-text border-1">
+      <h4>Login Credentials</h4>
+    </div>
+    <div class="email-div flex1">
+      <mat-icon class="icon-res">mail</mat-icon>
+      <p class="email-info">{{email$|async}}</p>
+    </div>
+    <div class="reset-pass-div flex1">
+      <mat-icon class="icon-res">lock</mat-icon>
+      <button class="reset-pass" (click)="resetEmail()">Change Email</button>
+    </div>
+  </div>
+  <div class="delate-acc-div">
+    <button (click)="delateAccount()">Delate Account</button>
+  </div>
+</section>
+
+

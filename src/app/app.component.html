@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <div class="auth-nav" *ngIf="isLoggedOut$|async">
+    <button class="login" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</button>
+    <button class="register" [routerLink]="['/register']" routerLinkActive="router-link-active" >Register</button>
+  </div>
+  <app-nav-bar-container-comp *ngIf="isLoggedIn$|async"></app-nav-bar-container-comp>
+</div>
+<router-outlet></router-outlet>
+

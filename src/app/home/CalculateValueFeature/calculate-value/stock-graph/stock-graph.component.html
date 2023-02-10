@@ -1,0 +1,19 @@
+<div id="container">
+  <button (click)="check()">click</button>
+  <apx-chart #chart *ngIf="loaded"
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [xaxis]="chartOptions.xaxis"
+    [yaxis]="chartOptions.yaxis"
+    [title]="chartOptions.title"
+    [grid]="chartOptions.grid"
+    [colors]="chartOptions.colors"
+    [dataLabels]="chartOptions.dataLabels"
+    [tooltip]="chartOptions.tooltip"
+    [fill]="chartOptions.fill"
+    [stroke]="chartOptions.stroke"
+
+  ></apx-chart>
+</div>
+
+

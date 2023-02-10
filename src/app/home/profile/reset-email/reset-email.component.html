@@ -1,0 +1,17 @@
+<form class="container" #resetForm="ngForm" (ngSubmit)="ResetEmail(resetForm.value)">
+  <div>
+    <h2 mat-dialog-title >Reset Email</h2>
+  </div>
+  <div  mat-dialog-content class="fields">
+    <label for="current-email">Current Email</label>
+    <input type="email" name="current_email" ngModel>
+    <label for="new-email">New Email</label>
+    <input type="email" name="new_email" #newEmail ngModel>
+  </div>
+  <div mat-dialog-actions class=".btn-container">
+    <button class="btn-reset" >Update</button>
+    <button [mat-dialog-close]="false">close</button>
+  </div>
+  <h3>{{approvalMessage}}</h3>
+</form>
+

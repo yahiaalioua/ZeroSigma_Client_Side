@@ -1,0 +1,35 @@
+<section *ngIf="userInfo$|async as user">
+  <form [formGroup]="UserInfoForm" (submit)="update()">
+    <div class="title">
+      <h3 class="border-1">My Profile</h3>
+    </div>
+    <div class="fields-div">
+      <label for="linkedin">Linkedin Account</label>
+      <div class="input-div">
+        <div class="initials">linkedin.com/in/</div>
+        <input type="text"  id="" formControlName="linkedin" value="sfdsfdssca">
+      </div>
+      <label for="Twitter">Twitter Account</label>
+      <div class="input-div">
+        <div class="initials">twitter.com/</div>
+        <input type="url"  id="" formControlName="twitter" [value]="user.Twitter">
+      </div>
+      <label for="Youtube">Youtube Channel</label>
+      <div class="input-div">
+        <div class="initials">youtube.com/c/</div>
+        <input type="url"  id="" formControlName="youTube" [value]="user.Youtube">
+      </div>
+      <div class="input-div-2">
+        <label for="Website">Website</label>
+        <input type="url"  id="" formControlName="website" [value]="user.Website">
+      </div>
+      <div class="input-div-2">
+        <label for="About me">About me</label>
+        <input type="text"  id="about-me" formControlName="aboutMe" [value]="user.About_me">
+      </div>
+      <div class="btn-div">
+        <button type="submit">Update</button>
+      </div>
+    </div>
+  </form>
+</section>

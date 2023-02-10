@@ -1,0 +1,52 @@
+aside{
+  width: 30vw;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+  border-radius: 2em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  flex: 1 1;
+
+}
+.prof-img-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+}
+.acccount-circle{
+  font-size: 140px;
+  width: 140px;
+  height: 140px;
+  position: absolute;
+  top: -70px;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.username-side-div h3{
+  text-align: center;
+  font-weight: 400;
+  font-size: 3em;
+}
+.options-div{
+  padding: 1em;
+  margin-bottom: 4em;
+}
+.account,.profile{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile{
+  margin-top: 1em;
+}
+p,.options-icon{
+  font-size: 2em;
+}

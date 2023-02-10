@@ -1,0 +1,53 @@
+form
+{
+  width: 400px;
+  height: 200px;
+  margin: 2em auto;
+}
+.container-1,.container-2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.container-3{
+  margin-top: 2em;
+}
+button{
+  height: 2em;
+  width: 5em;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background-color: rgb(155, 172, 208);
+  color: white;
+}
+button:hover{
+  background-color: rgb(114, 137, 186);
+  cursor: pointer;
+}
+button:disabled{
+  background-color: lightgrey;
+}
+label{
+  width: 100px;
+  margin-top: 1em;
+
+}
+input{
+  width: 60%;
+  margin-top: 1em;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid rgb(56, 56, 83);
+  outline: none;
+  text-align: center;
+}
+input::placeholder{
+  color: rgba(209, 209, 209, 0.849);
+  text-align: center;
+}
+small{
+  color: rgb(92, 20, 20);
+}
+

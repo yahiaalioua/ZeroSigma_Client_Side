@@ -1,0 +1,48 @@
+.wrapper{
+  margin: 0 auto;
+  height: max-content;
+}
+.content-container{
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+}
+header{
+  background: linear-gradient(to left,rgb(53, 54, 69), rgb(84, 84, 104));
+  height: 7em;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header h1{
+  letter-spacing: 2px;
+  font-size: 3em;
+}
+.bold{
+  font-weight: 900;
+}
+img{
+  height: 40vh;
+  width: 40vw;
+  object-fit: contain;
+}
+main{
+  margin-top: 5em;
+}
+.main-text-img-div{
+  display: flex;
+  margin-top: 2em;
+}
+.main-text-img-div p{
+  width: 50%;
+}
+.main-text-second{
+  margin-top: 2em;
+}
+p{
+  font-size: 1.5em;
+  letter-spacing: 1px;
+  line-height: 30px;
+}
+

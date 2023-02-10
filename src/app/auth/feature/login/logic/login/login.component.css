@@ -1,0 +1,15 @@
+.wrapper{
+  background: linear-gradient(rgb(155, 172, 208), rgb(38, 56, 89));
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.container-1{
+  margin-top: 5%;
+}
+.container-1>*{
+  text-align: center;
+  color: white;
+}

@@ -1,0 +1,20 @@
+.auth-nav{
+  height: 4em;
+  background: linear-gradient(to right, rgb(67, 67, 81),rgb(59, 59, 77));
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+button{
+  height: 2em;
+  background-color: rgb(92, 115, 172);
+  color: white;
+  width: 6em;
+  border: none;
+  border-radius: 3px;
+  margin-right: 1em;
+}
+button:hover{
+  background-color: rgb(93, 93, 128);
+}
+

@@ -1,0 +1,22 @@
+<aside>
+  <div class="prof-img-div">
+    <mat-icon class="acccount-circle"><a href="#"> account_circle </a></mat-icon>
+  </div>
+  <div class="username-side-div">
+    <h3>{{fullName$|async}}</h3>
+  </div>
+  <div class="options-div">
+    <a href="#" [routerLink]="['/home/profile/account-info/']" routerLinkActive="router-link-active" >
+      <div class="account">
+        <p>Account</p>
+        <mat-icon class="option-icon">manage_accounts</mat-icon>
+      </div>
+    </a>
+    <a [routerLink]="['/home/profile/profile-settings']" routerLinkActive="router-link-active" >
+      <div class="profile">
+        <p>Profile</p>
+        <mat-icon class="option-icon">contacts</mat-icon>
+      </div>
+    </a>
+  </div>
+</aside>

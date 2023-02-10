@@ -1,0 +1,19 @@
+<form class="container" #delateForm="ngForm" (ngSubmit)="delateAccount(delateForm.value)">
+  <div>
+    <h2 mat-dialog-title >Delate Account</h2>
+    <h3 class="warning-h3">Your account will be delated, you will no longer be able to log in.</h3>
+  </div>
+  <div  mat-dialog-content class="fields">
+    <p>Confirm your password to proceed</p>
+    <label for="current-email">Current Password</label>
+    <input type="password" name="password" ngModel>
+    <small>{{approvalMessage}}</small>
+  </div>
+  <div mat-dialog-actions class=".btn-container">
+    <button class="btn-delate">Delate</button>
+    <button [mat-dialog-close]="false">close</button>
+  </div>
+</form>
+
+
+
