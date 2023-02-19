@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AuthStateService } from 'src/app/auth/AuthState/auth-state.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { ModalService } from 'src/app/core/services/modal.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ModalService } from 'src/app/core/services/modal.service';
 })
 export class DelateAccountComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DelateAccountComponent>,private auth:AuthStateService) { }
+  constructor(public dialogRef: MatDialogRef<DelateAccountComponent>,private auth:AuthService) { }
   approvalMessage:string|undefined;
 
   ngOnInit(): void {

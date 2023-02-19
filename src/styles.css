@@ -17,5 +17,8 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
+app-root {   z-index: 1; }
+app-toast, .toast-class {   z-index: 2; }
+
 
 

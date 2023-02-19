@@ -9,7 +9,6 @@ export type Userinfo={
 }
 export type UserCredentials={
   email:string|undefined;
-  password:number|string|undefined;
   fullName:string
 }
 export type UserStatus={

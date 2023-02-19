@@ -9,7 +9,6 @@ export class StoreService {
   currentState:UserState={
     UserCredentials:{
     email:'',
-    password:'',
     fullName:''
     },
     Userinfo:{
@@ -25,7 +24,7 @@ export class StoreService {
       isLoggedOut:true
     }
   }
-  UserState:BehaviorSubject<UserState>=new BehaviorSubject<UserState>(this.currentState);
+  private UserState:BehaviorSubject<UserState>=new BehaviorSubject<UserState>(this.currentState);
   UserState$:Observable<UserState>=this.UserState.asObservable()
   constructor() { }
   setState(NewUserState:UserState):void{

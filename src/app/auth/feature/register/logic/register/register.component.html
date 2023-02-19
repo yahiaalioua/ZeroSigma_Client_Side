@@ -2,7 +2,7 @@
   <div class="container-1">
     <h2>Are your stocks overvalued?</h2>
     <h4>AlphaValue can help you see if your stocks are over or undervalued</h4>
-    <app-register-form [registerForm]="registerForm" [email]="email" [password]="password" [redirectToHome]="redirectToHome"
-    (registeredUser)="get($event)"></app-register-form>
+    <app-register-form [registerForm]="registerForm" [email]="email" [password]="password"
+    (registeredUser)="Signup($event)" [errorNotification$]="errorNotification$"></app-register-form>
   </div>
 </div>

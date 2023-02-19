@@ -1,7 +1,7 @@
 form
 {
-  width: 400px;
-  height: 200px;
+  max-width: 400px;
+  max-height: 200px;
   margin: 2em auto;
 }
 .container-1,.container-2{
@@ -19,11 +19,11 @@ button{
   border-radius: 5px;
   outline: none;
   border: none;
-  background-color: rgb(155, 172, 208);
+  background-color: rgb(41, 146, 155);
   color: white;
 }
 button:hover{
-  background-color: rgb(114, 137, 186);
+  background-color: rgb(114, 166, 186);
   cursor: pointer;
 }
 button:disabled{
@@ -32,22 +32,25 @@ button:disabled{
 label{
   width: 100px;
   margin-top: 1em;
-
+  color: rgb(10, 30, 50);
+  font-size: 1.2em;
 }
 input{
   width: 60%;
   margin-top: 1em;
   border: none;
   background-color: transparent;
-  border-bottom: 1px solid rgb(56, 56, 83);
+  border-bottom: 1px solid rgb(51, 201, 166);
   outline: none;
   text-align: center;
+  padding: 2px;
+  color: whi;
 }
 input::placeholder{
-  color: rgba(209, 209, 209, 0.849);
+  color: rgba(95, 111, 111, 0.849);
   text-align: center;
 }
 small{
-  color: rgb(92, 20, 20);
+  color: rgb(60, 104, 102);
 }
 

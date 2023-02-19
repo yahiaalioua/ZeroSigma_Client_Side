@@ -1,7 +1,11 @@
 <div class="wrapper">
+  <ng-container *ngIf="isLoading$|async">
+    <app-spinner></app-spinner>
+  </ng-container>
   <div class="container-1">
     <h2>Are your stocks overvalued?</h2>
-    <h4>AlphaValue can help you see if your stocks are over or undervalued</h4>
-    <app-login-form [loginForm]="loginForm" [email]="email" [password]="password" (LoginData)="Login($event)" ></app-login-form>
+    <h4>ZeroSigma can help you see if your stocks are over or undervalued</h4>
+    <app-login-form [loginForm]="loginForm" [email]="email" [password]="password" (LoginData)="Login($event)"
+    [errorNotification$]="errorNotification$"></app-login-form>
   </div>
 </div>

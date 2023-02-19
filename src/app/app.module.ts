@@ -29,9 +29,10 @@ import { SearchPipe } from './Shared/Pipes/search.pipe';
 import { DatePipe } from '@angular/common';
 import { SearchSmartComponent } from './home/CalculateValueFeature/SearchFeature/logic/search-smart.component';
 import { SearchUIComponent } from './home/CalculateValueFeature/SearchFeature/ui/search-ui.component';
-import { ErrorDialogComponent } from './Shared/Dialogs/ErrorDialog/error-dialog.component';
 import { CustomErrorHandlerService } from './core/Errors/custom-error-handler.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ToastComponent } from './Shared/Dialogs/Toaster/toast/toast.component';
+import { SpinnerComponent } from './Shared/Spinner/spinner/spinner.component';
 
 
 
@@ -62,7 +63,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     SearchPipe,
     SearchSmartComponent,
     SearchUIComponent,
-    ErrorDialogComponent,
+    ToastComponent,
+    SpinnerComponent,
 
   ],
   imports: [

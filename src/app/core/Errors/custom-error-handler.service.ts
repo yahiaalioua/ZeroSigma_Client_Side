@@ -1,22 +1,21 @@
-import { ErrorHandler, Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorHandler, EventEmitter, Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { ToastService } from 'src/app/Shared/services/toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomErrorHandlerService implements ErrorHandler{
 
-  constructor(private snackbar:MatSnackBar) { }
-  private errorMessage:Subject<string>=new Subject();
-  errorMessage$:Observable<string>=this.errorMessage.asObservable();
+  constructor(private Toast:ToastService) { }
   handleError(error: unknown): void {
-     let message:string='An Error has just happened, we are already working on it. Sorry for the inconvenience';
-     this.snackbar.open(
-      message,
-      'Close',
-      {duration:2000}
-     );
+     this.Toast.SetToast({
+      Title:'Error',
+      Message:'An Error has just happened, we are already working on it. Sorry for the inconvenience',
+      Type:'Error',
+      Show:true
+     });
+     this.Toast.DismissToast()
      console.error('Error caught from Custom Error handler', error)
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
 
 
@@ -11,8 +12,8 @@ export class RegisterFormComponent implements OnInit {
 
   @Input()registerForm:any;
   @Input()email:any ;
-  @Input()password:any
-  @Input()redirectToHome:any
+  @Input()password:any;
+  @Input()errorNotification$?:Observable<string|null>;
   @Output() registeredUser = new EventEmitter()
   constructor() { }
 
@@ -20,7 +21,6 @@ export class RegisterFormComponent implements OnInit {
   }
   SubmitForm(){
     this.registeredUser.emit(this.registerForm.value);
-    this.redirectToHome()
   }
 
 }

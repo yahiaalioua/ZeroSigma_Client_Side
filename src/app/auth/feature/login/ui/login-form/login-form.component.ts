@@ -1,7 +1,7 @@
-import { outputAst } from '@angular/compiler';
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { AuthStateService } from 'src/app/auth/AuthState/auth-state.service';
+import { Observable, tap } from 'rxjs';
+
 
 @Component({
   selector: 'app-login-form',
@@ -12,15 +12,13 @@ export class LoginFormComponent implements OnInit {
   @Input()loginForm:any;
   @Input()email!:any;
   @Input()password!:any;
+  @Input()errorNotification$?:Observable<string|null>;
   @Output() LoginData =new EventEmitter
-  constructor(private auth:AuthStateService) { }
-  invalidUserMessage=this.auth.invalidLoginMessage
+  constructor() { }
 
   ngOnInit(): void {
   }
   Login(){
     this.LoginData.emit(this.loginForm.value)
-    this.invalidUserMessage=this.auth.invalidLoginMessage
-
   }
 }

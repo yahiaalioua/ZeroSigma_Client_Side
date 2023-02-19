@@ -1,0 +1,65 @@
+<div *ngIf="ShowToast$|async" class="toast-class" [ngClass]="{
+  'Success': (ToastType$|async)=='Success',
+  'Error': (ToastType$|async)=='Error',
+  'Warning': (ToastType$|async)=='Warning',
+  'Info': (ToastType$|async)=='Info'
+}">
+  <div class="container">
+    <div class="text-container" [ngClass]="{
+      'text-Container-Success': (ToastType$|async)=='Success',
+      'text-Container-Error': (ToastType$|async)=='Error',
+      'text-Container-Warning': (ToastType$|async)=='Warning',
+      'text-Container-Info': (ToastType$|async)=='Info'
+    }"
+    >
+      <h3 [ngClass]="{
+        'text-Success': (ToastType$|async)=='Success',
+        'text-Error': (ToastType$|async)=='Error',
+        'text-Warning': (ToastType$|async)=='Warning',
+        'text-Info': (ToastType$|async)=='Info'
+      }">
+      {{title|async}}
+      </h3>
+      <h4>
+        {{ toastMessage|async }}
+      </h4>
+    </div>
+    <a  (click)="close()">X</a>
+</div>
+
+<!--
+<div *ngIf="ShowToast$|async" class="toast-class" [ngClass]="{
+  'Success': (ToastType$|async)=='Success',
+  'Error': (ToastType$|async)=='Error',
+  'Warning': (ToastType$|async)=='Warning',
+  'Info': (ToastType$|async)=='Info'
+}">
+  <div class="container">
+    <div class="text-container" [ngClass]="{
+      'text-Container-Success': (ToastType$|async)=='Success',
+      'text-Container-Error': (ToastType$|async)=='Error',
+      'text-Container-Warning': (ToastType$|async)=='Warning',
+      'text-Container-Info': (ToastType$|async)=='Info'
+    }"
+    >
+      <h3 [ngClass]="{
+        'text-Success': (ToastType$|async)=='Success',
+        'text-Error': (ToastType$|async)=='Error',
+        'text-Warning': (ToastType$|async)=='Warning',
+        'text-Info': (ToastType$|async)=='Info'
+      }">
+      {{title|async}}
+      </h3>
+      <h4>
+        {{ toastMessage|async }}
+      </h4>
+    </div>
+    <a  (click)="close()"
+    [ngClass]="{
+      'text-Success': (ToastType$|async)=='Success',
+      'text-Error': (ToastType$|async)=='Error',
+      'text-Warning': (ToastType$|async)=='Warning',
+      'text-Info': (ToastType$|async)=='Info'
+    }">X</a>
+</div>
+ -->
