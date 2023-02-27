@@ -7,6 +7,7 @@ import { UserStatus } from 'src/app/state/stateInterfaces/user-state';
 import { StoreService } from 'src/app/state/store.service';
 import { login } from '../feature/login/interfaces/loginInterface';
 import { register } from '../feature/register/Interfaces/register';
+import { AuthResponse } from '../Models/AuthModel';
 
 @Injectable({
   providedIn: 'root'

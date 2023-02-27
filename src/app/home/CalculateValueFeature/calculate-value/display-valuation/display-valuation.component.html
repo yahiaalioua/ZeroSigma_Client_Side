@@ -1,20 +1,21 @@
+<button (click)="click()">click</button>
 <div class="wrapper">
-  <div class="stock-info-1">
+  <div class="stock-info-1" *ngIf="(data|async)!=null">
     <div class="ticker-stock-div">
-      <div class="price-percent-div">
-        <h4>Price: 70 USD</h4>
-        <h5>+3.28%</h5>
-      </div>
+      <p>Price: {{price|async}} USD</p>
+      <h5>{{change|async}}%</h5>
+      <p>{{name|async}}</p>
+      <p>{{tickr|async}}</p>
+      <p class="date">Updated {{date|async|date}}</p>
     </div>
-    <p>Updated Feb 22 2023</p>
   </div>
   <div class="stock-info-2">
     <app-stock-graph></app-stock-graph>
   </div>
-  <div class="valuation-div">
-    <h2>Apple intristic value:</h2>
+  <div class="valuation-div" *ngIf="(data|async)!=null">
+    <h2>{{tickr|async}} intristic value:</h2>
     <h1>120 USD</h1>
-    <p>The intrinsic value of one Apple stock under our scenario is 123 USD. Compared to the current market price of 115 USD,<span> Apple is undervalued by 11%.</span></p>
+    <p>The intrinsic value of one {{tickr|async}} stock under our scenario is 123 USD. Compared to the current market price of 115 USD,<span> {{tickr|async}} is undervalued by 11%.</span></p>
   </div>
 </div>
 

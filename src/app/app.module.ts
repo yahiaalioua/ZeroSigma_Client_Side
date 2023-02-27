@@ -33,6 +33,7 @@ import { CustomErrorHandlerService } from './core/Errors/custom-error-handler.se
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ToastComponent } from './Shared/Dialogs/Toaster/toast/toast.component';
 import { SpinnerComponent } from './Shared/Spinner/spinner/spinner.component';
+import { DashbordComponent } from './core/Components/dashbord.component';
 
 
 
@@ -65,6 +66,7 @@ import { SpinnerComponent } from './Shared/Spinner/spinner/spinner.component';
     SearchUIComponent,
     ToastComponent,
     SpinnerComponent,
+    DashbordComponent,
 
   ],
   imports: [

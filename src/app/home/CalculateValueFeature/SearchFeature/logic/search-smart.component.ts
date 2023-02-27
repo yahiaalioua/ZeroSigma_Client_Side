@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, filter,Observable,Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, filter,Observable,Subject, switchMap } from 'rxjs';
 import { Top50Companies } from 'src/app/core/Models/top200Companies';
+import { HttpGetCallsService } from 'src/app/core/services/HttpAndInterceptors/http-get-calls.service';
 import { SearchFeatureService } from 'src/app/core/services/search-feature.service';
 
 @Component({
@@ -12,7 +13,8 @@ import { SearchFeatureService } from 'src/app/core/services/search-feature.servi
 export class SearchSmartComponent implements OnInit {
 
   AllCompanies=Top50Companies;
-  constructor(private searchSer:SearchFeatureService) { }
+  constructor(private searchSer:SearchFeatureService,private StockDataService:HttpGetCallsService) { }
+
   CompaniesSubj$:Subject<string[]>=this.searchSer.CompaniesSubj$
   Companies$:Observable<string[]>=this.searchSer.Companies$
   searchInput=new FormControl();
@@ -24,6 +26,12 @@ export class SearchSmartComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(char=>this.searchSer.doSearch(char,this.AllCompanies))
     ).subscribe(val=>this.CompaniesSubj$.next(val))
+  }
+  SendInputData(inputData:string){
+    this.StockDataService.UserSearchData.next(inputData);
+  }
+  SendClickedData(data:string){
+    this.StockDataService.UserSearchData.next(data)
   }
 
 }

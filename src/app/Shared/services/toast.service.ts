@@ -22,6 +22,6 @@ export class ToastService {
   DismissToast(): void {
     setTimeout(() => {
       this.SetToast(this.InitialStatus);
-    }, 4000);
+    }, 6000);
   }
 }

@@ -34,11 +34,12 @@ export class AuthService {
     return this.http.post<login>(this.LoginUrl,{email,password}).pipe(
       shareReplay(),
       map((resp:any)=>{
-        this.storage.setItem('AuthDetails',resp)
+        const authResp:AuthResponse=resp
+        this.storage.setItem('AuthDetails',authResp)
         this.store.setState({...this.store.currentState, UserStatus:{isLoggedIn:true,isLoggedOut:false},
-          UserCredentials:{email:resp.email,fullName:resp.name}
+          UserCredentials:{email:authResp.payload.email,fullName:authResp.payload.name}
         });
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/dashbord');
         return resp
       }),tap(()=>this.isLoading.next(false))
       ,catchError(err=>{

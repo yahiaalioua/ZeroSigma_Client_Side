@@ -1,4 +1,4 @@
-<div *ngIf="ShowToast$|async" class="toast-class" [ngClass]="{
+<div [hidden]="!(ShowToast$|async)" class="toast-class" [ngClass]="{
   'Success': (ToastType$|async)=='Success',
   'Error': (ToastType$|async)=='Error',
   'Warning': (ToastType$|async)=='Warning',

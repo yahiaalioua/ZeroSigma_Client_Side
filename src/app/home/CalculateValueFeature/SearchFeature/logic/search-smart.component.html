@@ -1,6 +1,9 @@
 <div class="search-result-container">
   <app-search-ui
       [Companies$]="Companies$"
-      [searchInput]="searchInput">
+      [searchInput]="searchInput"
+      (InputData)="SendInputData($event)"
+      (ClickedData)="SendClickedData($event)"
+      >
   </app-search-ui>
 </div>

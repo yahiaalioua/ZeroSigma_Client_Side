@@ -1,6 +1,7 @@
 section{
   border-radius: 2em;
-  width: 60vw;
+  min-width: 60vw;
+  max-width: 80vw;
   height: 400px;
   display: flex;
   justify-content: space-between;
@@ -81,6 +82,9 @@ p{font-size: 16px;}
   background-color: rgb(71, 74, 83);
   color: white;
   transition: 0.5s;
+}
+h4{
+  margin: 0;
 }
 
 

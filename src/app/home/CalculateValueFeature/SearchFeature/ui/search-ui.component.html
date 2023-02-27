@@ -1,11 +1,13 @@
 <div class="search-results-wrapper">
   <div class="search-container">
-    <input type="search" placeholder="search for a company" [formControl]="searchInput" >
-    <mat-icon class="search-icon">search</mat-icon>
+    <input type="search" placeholder="search for a company" [formControl]="searchInput" #input>
+    <mat-icon class="search-icon" (click)="sendInputData()">search</mat-icon>
   </div>
-  <div class="auto-complete-box" *ngIf="searchInput.value">
-    <li *ngFor="let companies of Companies$|async">
-        <a href="#">{{companies}}</a>
-    </li>
-  </div>
+  <ng-container *ngFor="let companies of Companies$|async">
+    <div class="auto-complete-box" *ngIf="companies&&input.value" #box>
+      <li>
+          <a (click)="sendClickedCompanyData(companies)">{{companies}}</a>
+      </li>
+    </div>
+  </ng-container>
 </div>

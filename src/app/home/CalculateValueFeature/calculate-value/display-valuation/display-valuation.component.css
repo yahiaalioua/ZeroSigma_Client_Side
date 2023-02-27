@@ -1,4 +1,6 @@
-
+*{
+  margin: 0;
+}
 .wrapper
 {
   border-radius: 10px;
@@ -24,20 +26,11 @@
   color: white;
   align-items: center;
 }
-.price-percent-div{
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-h4{
-  margin: 0;
-  margin-left: 1em;
-}
+
 h5{
   color: #00ff51;
   font-size: 1em;
-  margin: 0;
-  margin-left: 1em;
+  margin: 0 auto 0 5px
 }
 .stock-info-1 p{
   margin: 0;
@@ -47,9 +40,15 @@ h5{
   width: 100%;
   margin: 0;
 }
-.ticker-stock-div >*{
-  margin: 1px;
+.ticker-stock-div {
+  margin-left: 10px;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
 }
+
+
 .valuation-div{
   padding: 1em;
   padding-top: 0;

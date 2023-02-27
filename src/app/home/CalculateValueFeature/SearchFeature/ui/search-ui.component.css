@@ -71,3 +71,6 @@ a:hover{
   color: white;
   background-color: rgba(23, 170, 131, 0.849);
 }
+.mat-icon{
+  cursor: pointer;
+}

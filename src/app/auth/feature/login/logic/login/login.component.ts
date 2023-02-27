@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
 
   Login(data:any){
-    this.Authservice.login(data).subscribe()
+    this.Authservice.login(data).subscribe(resp=>console.log(resp))
     this.isLoading$?.next(true)
   }
 }

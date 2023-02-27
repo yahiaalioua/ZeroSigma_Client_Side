@@ -8,7 +8,6 @@
       <button class="register" (click)="RemoveAuthErrors()" [routerLink]="['/register']" routerLinkActive="router-link-active" >Register</button>
     </div>
   </div>
-  <app-nav-bar-container-comp *ngIf="isLoggedIn$|async"></app-nav-bar-container-comp>
 </div>
 <router-outlet></router-outlet>
 <app-toast></app-toast>
