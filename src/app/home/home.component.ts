@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, pluck } from 'rxjs';
-import { UserFacadeService } from '../core/facades/user-facade.service';
+import { ActivatedRoute } from '@angular/router';
 import { HttpGetCallsService } from '../core/services/HttpAndInterceptors/http-get-calls.service';
 
 @Component({
@@ -10,8 +9,9 @@ import { HttpGetCallsService } from '../core/services/HttpAndInterceptors/http-g
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private httpService:HttpGetCallsService) { }
+  constructor(private activatedRoute:ActivatedRoute) { }
   ngOnInit(): void {
+
   }
 
 }

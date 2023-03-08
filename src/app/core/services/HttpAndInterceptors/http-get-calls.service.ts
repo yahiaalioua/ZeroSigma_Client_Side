@@ -1,7 +1,7 @@
 import { HttpClient,} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, mergeMap, Observable, of, OperatorFunction, shareReplay, switchMap, tap } from 'rxjs';
-import { stockData } from './Interfaces/stockData';
+import { StockData } from './Interfaces/stockData';
 import { DatePipe } from '@angular/common';
 import { ToastService } from 'src/app/Shared/services/toast.service';
 import { DataHelperService } from './Utils/data-helper.service';
@@ -32,7 +32,7 @@ export class HttpGetCallsService {
     return this.utils.lastTikerData$
 }))};
   constructor(private Http:HttpClient,private datePipe:DatePipe,private toast:ToastService,private utils:DataHelperService) {}
-  StockData$(companyName:string):Observable<stockData[]|unknown>{
+  StockData$(companyName:string):Observable<StockData[]|unknown>{
     return this.SearchCompany$(companyName).pipe(switchMap((data:any)=>this.Http.get
       (`https://financialmodelingprep.com/api/v3/historical-price-full/${data.Ticker}?apikey=${this.ApiKey}`).pipe(
       map((data:any)=>data.historical.slice(0,30).map((val:any)=>{

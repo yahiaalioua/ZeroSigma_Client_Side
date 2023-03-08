@@ -8,6 +8,7 @@ import { UserState } from './stateInterfaces/user-state';
 export class StoreService {
   currentState:UserState={
     UserCredentials:{
+    id:undefined,
     email:'',
     fullName:''
     },
@@ -30,7 +31,7 @@ export class StoreService {
   setState(NewUserState:UserState):void{
     this.UserState.next(NewUserState)
   }
-  getUser():UserState{
+  GetUserState():UserState{
     return this.UserState.getValue()
   }
 }

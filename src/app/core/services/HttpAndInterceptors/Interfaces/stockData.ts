@@ -1,5 +1,5 @@
 
-export interface stockData{
+export interface StockData{
   y:number;
   x:Date
 }

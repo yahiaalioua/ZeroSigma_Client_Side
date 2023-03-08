@@ -8,6 +8,7 @@ export type Userinfo={
 
 }
 export type UserCredentials={
+  id:number|undefined;
   email:string|undefined;
   fullName:string
 }

@@ -16,8 +16,9 @@ export class ToastService {
   status$:Observable<Toastdata|null>=this.status.asObservable();
 
   constructor() { }
-  SetToast(data:Toastdata){
+  SetToast(data:Toastdata):void{
     this.status.next(data);
+    this.DismissToast()
   }
   DismissToast(): void {
     setTimeout(() => {

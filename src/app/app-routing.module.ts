@@ -17,16 +17,15 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:' ', component:LoginComponent},
-  {path:'dashbord', component:DashbordComponent, children:[
-    {path:'home', component:HomeComponent, resolve:{Data:StockDataResolver}, canActivate:[AuthGuard],children:[
-      {path:'',component:CalculateValueComponent},
-      {path:'valuation',component:ValuationPageComponent},
-      {path:'profile', component:ProfileComponent, children:[
+  {path:'dashbord', component:DashbordComponent,resolve:{Data:StockDataResolver}, children:[
+    {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
+    {path:'valuation',component:ValuationPageComponent},
+    {path:'',redirectTo: 'home',pathMatch:'full'},
+    {path:'profile', component:ProfileComponent, children:[
         { path: '', redirectTo: 'account-info', pathMatch: 'full' },
         {path:'account-info',component:AccountInfoComponent},
         {path:'profile-settings',component:ProfileSettingsComponent}
-      ]}
-    ]}
+      ]},
   ]},
   {path:'**',component:PageNotFoundComponent}
 ];

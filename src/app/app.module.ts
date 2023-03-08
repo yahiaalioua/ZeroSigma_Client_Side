@@ -85,7 +85,7 @@ import { DashbordComponent } from './core/Components/dashbord.component';
   ],
   providers:[DatePipe,{
     provide:ErrorHandler,
-    useClass:CustomErrorHandlerService
+    useClass:CustomErrorHandlerService,
   }],
   bootstrap: [AppComponent]
 })

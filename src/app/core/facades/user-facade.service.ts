@@ -12,12 +12,12 @@ export class UserFacadeService {
   userInfo$=this.store.UserState$.pipe(map(state=>state.Userinfo));
 
   updateName(newState:string):void{
-    this.store.setState({...this.store.getUser(),Userinfo:{...this.store.getUser().Userinfo, FullName:newState},UserCredentials:{...this.store.getUser().UserCredentials,fullName:newState}})
+    this.store.setState({...this.store.GetUserState(),Userinfo:{...this.store.GetUserState().Userinfo, FullName:newState},UserCredentials:{...this.store.GetUserState().UserCredentials,fullName:newState}})
   }
   updateUserInfo(userInfo:any):void{
     const{linkedin,twitter,youTube,website,aboutMe}=userInfo
     this.store.setState({
-      ...this.store.getUser(),Userinfo:{...this.store.getUser().Userinfo,
+      ...this.store.GetUserState(),Userinfo:{...this.store.GetUserState().Userinfo,
          Linkedin:linkedin,
          Twitter:twitter,
          Youtube:youTube,

@@ -29,8 +29,8 @@ export class AuthStateService  {
     AuthDetails=JSON.parse(AuthDetails);
     if(AuthDetails){
       if(AuthDetails.accessToken){
-        this.store.setState({...this.store.currentState, UserStatus:{isLoggedIn:true,isLoggedOut:false},
-          UserCredentials:{...this.store.currentState.UserCredentials}})
+        this.store.setState({...this.store.GetUserState(), UserStatus:{isLoggedIn:true,isLoggedOut:false}
+          })
       }
       else return
     }

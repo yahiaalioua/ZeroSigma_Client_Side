@@ -1,6 +1,5 @@
-<button (click)="click()">click</button>
 <div id="container">
-  <apx-chart #chart *ngIf="loaded"
+  <apx-chart #chart
     [series]="chartOptions.series"
     [chart]="chartOptions.chart"
     [xaxis]="chartOptions.xaxis"
@@ -12,7 +11,6 @@
     [tooltip]="chartOptions.tooltip"
     [fill]="chartOptions.fill"
     [stroke]="chartOptions.stroke"
-
   ></apx-chart>
 </div>
 

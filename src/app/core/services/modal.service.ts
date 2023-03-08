@@ -24,7 +24,7 @@ export class ModalService {
     }
     else{
       if(userDetails.email===CurrentEmail){
-        this.store.setState({...this.store.getUser(),UserCredentials:{...this.store.getUser().UserCredentials,email:NewEmail}});
+        this.store.setState({...this.store.GetUserState(),UserCredentials:{...this.store.GetUserState().UserCredentials,email:NewEmail}});
         this.approvalMessage='Your Email has successfully been updated'
       }
       else this.approvalMessage='You entered a wrong email'

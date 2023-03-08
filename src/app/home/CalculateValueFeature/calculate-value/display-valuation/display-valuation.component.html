@@ -1,4 +1,3 @@
-<button (click)="click()">click</button>
 <div class="wrapper">
   <div class="stock-info-1" *ngIf="(data|async)!=null">
     <div class="ticker-stock-div">
@@ -10,7 +9,7 @@
     </div>
   </div>
   <div class="stock-info-2">
-    <app-stock-graph></app-stock-graph>
+    <app-stock-graph [getChartOptions]="chartOptions" [resolverData]="resolverData" ></app-stock-graph>
   </div>
   <div class="valuation-div" *ngIf="(data|async)!=null">
     <h2>{{tickr|async}} intristic value:</h2>

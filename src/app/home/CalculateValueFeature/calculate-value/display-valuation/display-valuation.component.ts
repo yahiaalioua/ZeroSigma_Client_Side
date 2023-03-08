@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { map, Observable, tap } from 'rxjs';
+import { ChartService } from 'src/app/core/charts/chart.service';
 import { HttpGetCallsService } from 'src/app/core/services/HttpAndInterceptors/http-get-calls.service';
 import { DataHelperService } from 'src/app/core/services/HttpAndInterceptors/Utils/data-helper.service';
 
@@ -15,7 +17,13 @@ export class DisplayValuationComponent implements OnInit {
   date?:Observable<string>;
   name?:Observable<string>;
   tickr?:Observable<string>;
-  constructor(private readonly httpData:DataHelperService) { }
+  constructor(
+    private readonly httpData:DataHelperService,
+    private readonly chartService:ChartService,
+    private activatedRoute:ActivatedRoute) { }
+
+  chartOptions:any=this.chartService.chartOption
+  resolverData=this.activatedRoute.parent?.data
 
   ngOnInit(): void {
     this.price=this.httpData.stockData$.pipe(map(data=>data.close));
@@ -26,7 +34,6 @@ export class DisplayValuationComponent implements OnInit {
     this.tickr=this.httpData.companyInfo$.pipe(map(data=>data.symbol))
   }
   click(){
-    this.httpData.companyInfo$.pipe(tap(val=>console.log(val))).subscribe()
   }
 
 }
