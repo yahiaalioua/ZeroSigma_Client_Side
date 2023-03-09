@@ -12,6 +12,6 @@
     <button class="btn-reset" >Update</button>
     <button [mat-dialog-close]="false">close</button>
   </div>
-  <h3>{{approvalMessage}}</h3>
+  <h3>{{approvalMessage$|async}}</h3>
 </form>
 

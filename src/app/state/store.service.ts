@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { localStorageState } from './stateInterfaces/local-storage-state';
 import { UserState } from './stateInterfaces/user-state';
 
 @Injectable({
@@ -25,6 +26,15 @@ export class StoreService {
       isLoggedOut:true
     }
   }
+  localStorageInitialState:localStorageState={
+    accessToken:'',
+    payload:{
+      id:undefined,
+      email:'',
+      name:''
+    },
+    refreshToken:''
+  }
   private UserState:BehaviorSubject<UserState>=new BehaviorSubject<UserState>(this.currentState);
   UserState$:Observable<UserState>=this.UserState.asObservable()
   constructor() { }
@@ -33,5 +43,14 @@ export class StoreService {
   }
   GetUserState():UserState{
     return this.UserState.getValue()
+  }
+  private localStorageState:BehaviorSubject<localStorageState>=new BehaviorSubject<localStorageState>(this.localStorageInitialState)
+  localStorageState$:Observable<localStorageState>=this.localStorageState.asObservable();
+
+  setLocalStorageState(state:localStorageState):void{
+    this.localStorageState.next(state)
+  }
+  getLocalStorageState():localStorageState{
+    return this.localStorageState.getValue()
   }
 }

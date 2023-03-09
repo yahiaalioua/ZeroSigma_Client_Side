@@ -16,7 +16,7 @@ import { ResetEmailComponent } from '../../reset-email/reset-email.component';
 })
 export class AccountInfoComponent implements OnInit {
 
-  constructor(private userFacade:UserFacadeService,private modalService:ModalService, private modal:ModalService) { }
+  constructor(private userFacade:UserFacadeService, private modal:ModalService) { }
   fullName$:Observable<string|undefined>|undefined;
   fullName:string=''
   email$:Observable<string|undefined>|undefined;

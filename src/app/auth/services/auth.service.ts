@@ -22,7 +22,7 @@ export class AuthService {
     private storage:StorageService,private router:Router,
     private store:StoreService,private toast:ToastService,
     private AuthErrService:AuthErrorHandlerService,
-    private httpAuthService:HttpAuthServiceService
+    private httpAuthService:HttpAuthServiceService,
     ) { }
   signup({name,email,password}:register):Observable<any>{
     return this.httpAuthService.PostNewUser({name,email,password}).pipe(
@@ -42,6 +42,7 @@ export class AuthService {
       map((resp:AuthResponse)=>{
         const AuthResp:AuthResponse=resp
         this.storage.setItem('AuthDetails',AuthResp)
+        this.store.setLocalStorageState(AuthResp);
         this.store.setState({...this.store.GetUserState(), UserStatus:{isLoggedIn:true,isLoggedOut:false}
         });
         this.router.navigateByUrl('/dashbord');

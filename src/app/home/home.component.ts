@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpGetCallsService } from '../core/services/HttpAndInterceptors/http-get-calls.service';
+import { HttpGetCallsService } from '../core/services/http/http-get-calls.service';
 
 @Component({
   selector: 'app-home',

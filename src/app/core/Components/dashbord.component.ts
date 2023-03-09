@@ -25,6 +25,7 @@ export class DashbordComponent implements OnInit {
       let userId:number=cachedAuthDetailsObject.payload.id
       this.applicationStateService.SetApplicationState$(userId).subscribe();
     }
+    this.applicationStateService.setLocalStorageState()
   }
 
 }

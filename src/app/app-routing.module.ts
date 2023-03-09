@@ -27,7 +27,7 @@ const routes: Routes = [
         {path:'profile-settings',component:ProfileSettingsComponent}
       ]},
   ]},
-  {path:'**',component:PageNotFoundComponent}
+  {path:'**',redirectTo:'dashbord',pathMatch:'full'}
 ];
 
 @NgModule({

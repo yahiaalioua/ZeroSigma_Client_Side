@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, filter,Observable,Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, filter,Observable,Subject, switchMap, tap } from 'rxjs';
 import { Top50Companies } from 'src/app/core/Models/top200Companies';
-import { HttpGetCallsService } from 'src/app/core/services/HttpAndInterceptors/http-get-calls.service';
+import { HttpGetCallsService } from 'src/app/core/services/http/http-get-calls.service';
 import { SearchFeatureService } from 'src/app/core/services/search-feature.service';
 
 @Component({
@@ -32,6 +32,7 @@ export class SearchSmartComponent implements OnInit {
   }
   SendClickedData(data:string){
     this.StockDataService.UserSearchData.next(data)
+    this.StockDataService.UserSearchData$.pipe(tap((val)=>console.log(val))).subscribe()
   }
 
 }

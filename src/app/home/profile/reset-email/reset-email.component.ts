@@ -1,4 +1,5 @@
 import { Component,OnInit} from '@angular/core';
+import { Observable } from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
 
 @Component({
@@ -8,15 +9,14 @@ import { ModalService } from 'src/app/core/services/modal.service';
 })
 export class ResetEmailComponent implements OnInit{
   constructor(private modalService:ModalService) {}
-  approvalMessage:string|undefined
+  approvalMessage$?:Observable<string>;
 
   ngOnInit(): void {
   }
   ResetEmail(formData:any){
     console.log(formData.current_email)
     this.modalService.ResetEmail(formData.current_email,formData.new_email)
-    console.log(this.approvalMessage)
-    this.approvalMessage=this.modalService.approvalMessage
+    this.approvalMessage$=this.modalService.approvalMessage$
   }
 
 

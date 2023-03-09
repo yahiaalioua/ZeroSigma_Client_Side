@@ -1,20 +1,22 @@
-<div class="wrapper">
-  <div class="stock-info-1" *ngIf="(data|async)!=null">
-    <div class="ticker-stock-div">
-      <p>Price: {{price|async}} USD</p>
-      <h5>{{change|async}}%</h5>
-      <p>{{name|async}}</p>
-      <p>{{tickr|async}}</p>
-      <p class="date">Updated {{date|async|date}}</p>
+<div class="wrapper" *ngFor="let stockData of [(data|async)]">
+  <ng-container *ngIf="(data|async )!=null">
+    <div class="stock-info-1">
+      <div class="ticker-stock-div">
+        <p>Price: {{stockData.close|currency : 'USD' : true : '1.2-2'}}</p>
+        <h5>{{stockData.change}}%</h5>
+        <p>{{stockData.name}}</p>
+        <p>{{stockData.symbol}}</p>
+        <p class="date">Updated {{stockData.date|date}}</p>
+      </div>
     </div>
-  </div>
-  <div class="stock-info-2">
-    <app-stock-graph [getChartOptions]="chartOptions" [resolverData]="resolverData" ></app-stock-graph>
-  </div>
-  <div class="valuation-div" *ngIf="(data|async)!=null">
-    <h2>{{tickr|async}} intristic value:</h2>
-    <h1>120 USD</h1>
-    <p>The intrinsic value of one {{tickr|async}} stock under our scenario is 123 USD. Compared to the current market price of 115 USD,<span> {{tickr|async}} is undervalued by 11%.</span></p>
-  </div>
+    <div class="stock-info-2">
+      <app-stock-graph [getChartOptions]="chartOptions" [chartData]="chartData" ></app-stock-graph>
+    </div>
+    <div class="valuation-div">
+      <h2>{{stockData.symbol}} intristic value:</h2>
+      <h1>120 USD</h1>
+      <p>The intrinsic value of one {{stockData.symbol}} stock under our scenario is 123 USD. Compared to the current market price of 115 USD,<span> {{tickr|async}} is undervalued by 11%.</span></p>
+    </div>
+  </ng-container>
 </div>
 

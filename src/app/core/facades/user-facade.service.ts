@@ -1,8 +1,11 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { getMatIconFailedToSanitizeUrlError } from '@angular/material/icon';
-import { BehaviorSubject, map, Observable, observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, observable, of, switchMap, tap } from 'rxjs';
 import { Userinfo, UserState } from 'src/app/state/stateInterfaces/user-state';
 import { StoreService } from 'src/app/state/store.service';
+import { CachedUserAuthDetails } from '../Models/cachedData';
+import { HttpCallsService } from '../services/http/http-database/http-calls.service';
+import { StorageService } from '../services/Storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +14,7 @@ export class UserFacadeService {
   userCredentials$=this.store.UserState$.pipe(map(state=>state.UserCredentials));
   userInfo$=this.store.UserState$.pipe(map(state=>state.Userinfo));
 
-  updateName(newState:string):void{
-    this.store.setState({...this.store.GetUserState(),Userinfo:{...this.store.GetUserState().Userinfo, FullName:newState},UserCredentials:{...this.store.GetUserState().UserCredentials,fullName:newState}})
-  }
+
   updateUserInfo(userInfo:any):void{
     const{linkedin,twitter,youTube,website,aboutMe}=userInfo
     this.store.setState({
@@ -27,9 +28,44 @@ export class UserFacadeService {
     })
   }
 
-  constructor(private store:StoreService) {}
+  constructor(
+    private store:StoreService,
+    private httpCalls:HttpCallsService,
+    private storage:StorageService
+    ) {}
+
   checkState(){
     return this.store.UserState$.subscribe(console.log);
+  }
+
+  putName(id:number,name:string){
+    return this.httpCalls.putName(id,name).pipe(
+      tap((val:any)=>{
+        this.updateLocalStorageName(name)
+      }
+      ),switchMap(()=>this.store.localStorageState$.pipe(
+        tap(val=>this.storage.setItem('AuthDetails',val))
+      )),
+      catchError(val=>{
+        return of(null)
+      }))
+  }
+  updateLocalStorageName(name:string):void{
+    return this.store.setLocalStorageState({...this.store.getLocalStorageState(),payload:{
+      ...this.store.getLocalStorageState().payload,name:name  }
+    })
+  }
+  updateName(name:string){
+    let userDetails:string|null=localStorage.getItem('AuthDetails');
+    if(!userDetails){
+      return
+    }
+    else{
+      const CachedUserDetails:CachedUserAuthDetails=JSON.parse(userDetails);
+      const UserId=CachedUserDetails.payload.id
+      this.putName(UserId,name).subscribe()
+        this.store.setState({...this.store.GetUserState(),UserCredentials:{...this.store.GetUserState().UserCredentials,fullName:name}});
+      }
   }
 
 

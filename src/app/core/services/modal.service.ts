@@ -1,34 +1,59 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
+import { BehaviorSubject, catchError, Observable, of, switchMap, tap } from 'rxjs';
 import { StoreService } from 'src/app/state/store.service';
+import { CachedUserAuthDetails } from '../Models/cachedData';
+import { HttpCallsService } from './http/http-database/http-calls.service';
+import { StorageService } from './Storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
-  approvalMessage:string=''
+  approvalMessage:BehaviorSubject<string>=new BehaviorSubject<string>("")
+  approvalMessage$:Observable<string>=this.approvalMessage.asObservable()
   approvalMessageDelate:string=''
 
-  constructor(private store:StoreService,private dialog:MatDialog) {}
+  constructor(
+    private store:StoreService,private dialog:MatDialog,
+    private httpCalls:HttpCallsService,
+    private storage:StorageService
+    ) {}
   openDialog(dialogComponent:any):void{
     this.dialog.open(dialogComponent,{
       width:'400px'
     })
   }
+  putEmail(id:number,email:string){
+    return this.httpCalls.putEmail(id,email).pipe(
+      tap((val:any)=>{
+        this.store.setLocalStorageState({...this.store.getLocalStorageState(),payload:{
+          ...this.store.getLocalStorageState().payload,email:email
+        }})
+        this.approvalMessage.next(val.message)
+      }
+      ),switchMap(()=>this.store.localStorageState$.pipe(
+        tap(val=>this.storage.setItem('AuthDetails',val))
+      )),
+      catchError(val=>{
+        this.approvalMessage.next(val.error.message)
+        return of(null)
+      }))
+  }
   ResetEmail(CurrentEmail:string,NewEmail:string):void{
-    let userDetails:any=localStorage.getItem('details');
-    userDetails=JSON.parse(userDetails);
+    let userDetails:string|null=localStorage.getItem('AuthDetails');
     if(!userDetails){
       return
     }
     else{
-      if(userDetails.email===CurrentEmail){
+      const CachedUserDetails:CachedUserAuthDetails=JSON.parse(userDetails);
+      const UserId=CachedUserDetails.payload.id
+      if(CachedUserDetails.payload.email===CurrentEmail){
+        this.putEmail(UserId,NewEmail).subscribe()
         this.store.setState({...this.store.GetUserState(),UserCredentials:{...this.store.GetUserState().UserCredentials,email:NewEmail}});
-        this.approvalMessage='Your Email has successfully been updated'
       }
-      else this.approvalMessage='You entered a wrong email'
+      else return;
     }
   }
-
 }

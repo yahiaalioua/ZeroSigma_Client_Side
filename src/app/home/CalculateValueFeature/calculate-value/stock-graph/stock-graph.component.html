@@ -1,4 +1,4 @@
-<div id="container">
+<div id="container" *ngIf="chartData|async">
   <apx-chart #chart
     [series]="chartOptions.series"
     [chart]="chartOptions.chart"

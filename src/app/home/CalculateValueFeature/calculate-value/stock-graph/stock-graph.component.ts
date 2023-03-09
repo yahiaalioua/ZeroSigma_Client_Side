@@ -15,10 +15,10 @@ export class StockGraphComponent implements OnInit {
 
 
   @Input()getChartOptions:any
-  @Input()resolverData:any
+  @Input()chartData:any
 
   ngOnInit(): void {
-    this.resolverData.pipe(map((data:any)=>{
+    this.chartData.pipe(map((data:any)=>{
       this.chartOptions=this.getChartOptions(data)
     })).subscribe();
 

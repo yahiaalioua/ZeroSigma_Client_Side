@@ -34,6 +34,7 @@ input{
 input:focus{
   background-color: white;
   color: black;
+  outline: 1px solid black;
 }
 .account-box{
   font-size: 30px;
@@ -53,6 +54,7 @@ input:focus{
   border-bottom-left-radius: 0px;
 }
 .update-btn:hover,:focus{
+  background-color: rgb(6, 69, 96);
   border: none;
   outline: none;
   transition: 0.5s;
@@ -64,10 +66,20 @@ input:focus{
 }
 p{font-size: 16px;}
 
+.email-div>*{
+  margin: 0;
+}
+
 .reset-pass{
   background: none;
   border: none;
-  color: rgb(45, 126, 196);
+  color: rgb(0, 136, 255);
+}
+.reset-pass:hover,:focus{
+  background: none;
+  border: none;
+  color: rgb(14, 104, 183);
+  transition: 500ms;
 }
 .delate-acc-div{
   width: 60%;
@@ -78,8 +90,8 @@ p{font-size: 16px;}
   background-color: white;
   border: 1px solid lightgray;
 }
-.delate-acc-div> button:hover,:focus{
-  background-color: rgb(71, 74, 83);
+.delate-acc-div> button:hover{
+  background-color: rgb(60, 68, 90);
   color: white;
   transition: 0.5s;
 }

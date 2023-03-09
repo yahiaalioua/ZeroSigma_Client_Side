@@ -66,7 +66,7 @@ import { DashbordComponent } from './core/Components/dashbord.component';
     SearchUIComponent,
     ToastComponent,
     SpinnerComponent,
-    DashbordComponent,
+    DashbordComponent
 
   ],
   imports: [

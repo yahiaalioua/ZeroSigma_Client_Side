@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs';
 import { HttpAuthServiceService } from 'src/app/auth/services/Http/http-auth-service.service';
 import { userInfoResponse } from 'src/app/core/Models/userResponses';
+import { StorageService } from 'src/app/core/services/Storage/storage.service';
+import { localStorageState } from '../stateInterfaces/local-storage-state';
 import { StoreService } from '../store.service';
 
 @Injectable({
@@ -9,7 +11,10 @@ import { StoreService } from '../store.service';
 })
 export class ApplicationStateService {
 
-  constructor(private httpAuthService:HttpAuthServiceService,private store:StoreService) { }
+  constructor(
+    private httpAuthService:HttpAuthServiceService,
+    private store:StoreService,
+    private storage:StorageService) { }
 
   SetApplicationState$(id:number){
     return this.httpAuthService.GetUserById(id).pipe(map((UserData:userInfoResponse)=>{
@@ -20,6 +25,13 @@ export class ApplicationStateService {
           FullName:UserData.name,Linkedin:UserData.linkedin,Youtube:UserData.youTube,
           Website:UserData.website,About_me:UserData.aboutMe
         }})
-      }))
+      }
+    ))
   }
+  setLocalStorageState(){
+    const LocalStorageData:string=this.storage.getItem('AuthDetails')
+    const LocalStorageState:localStorageState=JSON.parse(LocalStorageData);
+    this.store.setLocalStorageState(LocalStorageState);
+  }
+
 }
