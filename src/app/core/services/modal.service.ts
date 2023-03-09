@@ -2,10 +2,10 @@ import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
 import { BehaviorSubject, catchError, Observable, of, switchMap, tap } from 'rxjs';
-import { StoreService } from 'src/app/state/store.service';
-import { CachedUserAuthDetails } from '../Models/cachedData';
+import { StoreService } from 'src/app/core/state/store.service';
+import { CachedUserAuthDetails } from '../Models/cached-data';
 import { HttpCallsService } from './http/http-database/http-calls.service';
-import { StorageService } from './Storage/storage.service';
+import { LocalStorageService } from './local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class ModalService {
   constructor(
     private store:StoreService,private dialog:MatDialog,
     private httpCalls:HttpCallsService,
-    private storage:StorageService
+    private storage:LocalStorageService
     ) {}
   openDialog(dialogComponent:any):void{
     this.dialog.open(dialogComponent,{
@@ -52,6 +52,9 @@ export class ModalService {
       if(CachedUserDetails.payload.email===CurrentEmail){
         this.putEmail(UserId,NewEmail).subscribe()
         this.store.setState({...this.store.GetUserState(),UserCredentials:{...this.store.GetUserState().UserCredentials,email:NewEmail}});
+      }
+      else if(CachedUserDetails.payload.email!=CurrentEmail){
+        this.approvalMessage.next('current email is wrong')
       }
       else return;
     }

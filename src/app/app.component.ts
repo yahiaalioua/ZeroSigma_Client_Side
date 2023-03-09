@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthStateService } from './auth/AuthState/auth-state.service';
-import { AuthErrorHandlerService } from './auth/Errors/auth-error-handler.service';
+import { AuthStateService } from './auth/auth-state/auth-state.service';
+import { AuthErrorHandlerService } from './auth/errors/auth-error-handler.service';
 
 
 @Component({

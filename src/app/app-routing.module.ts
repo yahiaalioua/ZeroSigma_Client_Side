@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/feature/login/logic/login/login.component';
-import { RegisterComponent } from './auth/feature/register/logic/register/register.component';
-import { DashbordComponent } from './core/Components/dashbord.component';
+import { LoginComponent } from './public/components/login/logic/login.component';
+import { RegisterComponent } from './public/components/register/logic/register.component';
+import { DashbordComponent } from './private/components/dashbord/dashbord.component';
 import { AuthGuard } from './core/Guards/auth.guard';
 import { StockDataResolver } from './core/Guards/stock-data.resolver';
-import { CalculateValueComponent } from './home/CalculateValueFeature/calculate-value/calculate-value.component';
-import { HomeComponent } from './home/home.component';
-import { AccountInfoComponent } from './home/profile/account-info/account-info/account-info.component';
-import { ProfileSettingsComponent } from './home/profile/profile-settings/profile-settings.component';
-import { ProfileComponent } from './home/profile/profile.component';
-import { ValuationPageComponent } from './home/ValuationPage/valuation-page/valuation-page.component';
-import { PageNotFoundComponent } from './pageNotFound/page-not-found/page-not-found.component';
+import { CalculateValueComponent } from './private/components/CalculateValueFeature/calculate-value/calculate-value.component';
+import { HomeComponent } from './private/components/home/home.component';
+import { AccountInfoComponent } from './private/components/profile/account-info/account-info/account-info.component';
+import { ProfileSettingsComponent } from './private/components/profile/profile-settings/profile-settings.component';
+import { ProfileComponent } from './private/components/profile/profile.component';
+import { ValuationPageComponent } from './private/components/valuation-page/valuation-page.component';
+import { PageNotFoundComponent } from './public/components/pageNotFound/page-not-found.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -27,7 +27,7 @@ const routes: Routes = [
         {path:'profile-settings',component:ProfileSettingsComponent}
       ]},
   ]},
-  {path:'**',redirectTo:'dashbord',pathMatch:'full'}
+  {path:'**',component:PageNotFoundComponent}
 ];
 
 @NgModule({

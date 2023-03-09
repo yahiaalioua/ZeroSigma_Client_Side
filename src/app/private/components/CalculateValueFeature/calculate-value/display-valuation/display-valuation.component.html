@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <ng-container *ngIf="((data|async )!=null)">
+    <div class="stock-info-1">
+      <div class="ticker-stock-div">
+        <p>Price: {{(price|async)|currency : 'USD' : 'symbol' : '1.2-2'}}</p>
+        <h5>{{(change|async)}}%</h5>
+        <p>{{(name|async)}}</p>
+        <p>{{(tickr|async)}}</p>
+        <p class="date">Updated {{(date|async)|date:'mediumDate'}}</p>
+      </div>
+    </div>
+    <div class="stock-info-2">
+      <app-stock-graph [getChartOptions]="chartOptions" [chartData]="chartData" ></app-stock-graph>
+    </div>
+    <div class="valuation-div">
+      <h2>{{(tickr|async)}} intristic value:</h2>
+      <h1>120 USD</h1>
+      <p>The intrinsic value of one {{(tickr|async)}} stock under our scenario is 123 USD. Compared to the current market price of 115 USD,<span> {{tickr|async}} is undervalued by 11%.</span></p>
+    </div>
+  </ng-container>
+</div>
+

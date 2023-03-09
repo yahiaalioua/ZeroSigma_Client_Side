@@ -1,11 +1,11 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { getMatIconFailedToSanitizeUrlError } from '@angular/material/icon';
 import { BehaviorSubject, catchError, map, Observable, observable, of, switchMap, tap } from 'rxjs';
-import { Userinfo, UserState } from 'src/app/state/stateInterfaces/user-state';
-import { StoreService } from 'src/app/state/store.service';
-import { CachedUserAuthDetails } from '../Models/cachedData';
+import { Userinfo, UserState } from 'src/app/core/state/state-interfaces/user-state';
+import { StoreService } from 'src/app/core/state/store.service';
+import { CachedUserAuthDetails } from '../Models/cached-data';
 import { HttpCallsService } from '../services/http/http-database/http-calls.service';
-import { StorageService } from '../services/Storage/storage.service';
+import { LocalStorageService } from '../services/local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class UserFacadeService {
   constructor(
     private store:StoreService,
     private httpCalls:HttpCallsService,
-    private storage:StorageService
+    private storage:LocalStorageService
     ) {}
 
   checkState(){

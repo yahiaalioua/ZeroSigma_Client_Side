@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, of, shareReplay, tap,BehaviorSubject } from 'rxjs';
-import { StorageService } from 'src/app/core/services/Storage/storage.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { ToastService } from 'src/app/Shared/services/toast.service';
-import { StoreService } from 'src/app/state/store.service';
-import { AuthErrorHandlerService } from '../Errors/auth-error-handler.service';
-import { login } from '../feature/login/interfaces/loginInterface';
-import { register } from '../feature/register/Interfaces/register';
-import { AuthResponse } from '../Models/AuthModel';
+import { StoreService } from 'src/app/core/state/store.service';
+import { AuthErrorHandlerService } from '../errors/auth-error-handler.service';
+import { AuthResponse } from '../models/auth-model';
 import { HttpAuthServiceService } from './Http/http-auth-service.service';
+import { register } from 'src/app/public/models/register';
+import { login } from 'src/app/public/models/loginInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class AuthService {
   GetUserDataUrl:string='https://localhost:7063/api/users/'
   isLoading:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false)
   constructor(
-    private storage:StorageService,private router:Router,
+    private storage:LocalStorageService,private router:Router,
     private store:StoreService,private toast:ToastService,
     private AuthErrService:AuthErrorHandlerService,
     private httpAuthService:HttpAuthServiceService,

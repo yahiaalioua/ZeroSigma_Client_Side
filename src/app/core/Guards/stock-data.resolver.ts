@@ -6,16 +6,16 @@ import {
 } from '@angular/router';
 import { catchError, combineLatest, forkJoin, mergeMap, Observable, of, switchMap } from 'rxjs';
 import { ToastService } from 'src/app/Shared/services/toast.service';
-import { HttpErrorHandlerService } from '../Errors/http-error-handler.service';
-import { HttpGetCallsService } from '../services/http/http-get-calls.service';
-import { StockData } from '../services/http/Interfaces/stockData';
+import { HttpErrorHandlerService } from '../errors/http-error-handler.service';
+import { HttpStockData } from '../services/http/http-external/http-stock-data';
+import { StockData } from '../Models/stock-data-series';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockDataResolver implements Resolve<StockData|unknown> {
 
-  constructor(private readonly httpData:HttpGetCallsService,private httpErrorHandler:HttpErrorHandlerService) {}
+  constructor(private readonly httpData:HttpStockData,private httpErrorHandler:HttpErrorHandlerService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<StockData|unknown> {
     return this.httpData.UserSearchData$.pipe(
       switchMap(data=>this.httpData.StockData$(data)),
