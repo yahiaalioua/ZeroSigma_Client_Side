@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable, pluck } from 'rxjs';
-import { UserFacadeService } from 'src/app/core/facades/user-facade.service';
+import { map, Observable} from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
+import { FacadeProfileAccountSettingsService } from '../../facades/facade-profile-account-settings.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,12 +10,12 @@ import { ModalService } from 'src/app/core/services/modal.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private modalService:ModalService,private userFacade:UserFacadeService) { }
+  constructor(private modalService:ModalService,private facadeProfileAccount:FacadeProfileAccountSettingsService) { }
   fullName$:Observable<string|undefined>|undefined;
 
-  
+
   ngOnInit(): void {
-    this.fullName$=this.userFacade.userCredentials$.pipe(map(credential=>credential.fullName));
+    this.fullName$=this.facadeProfileAccount.userCredentials$.pipe(map(credential=>credential.fullName));
   }
 
 }

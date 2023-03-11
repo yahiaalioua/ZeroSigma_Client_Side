@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationStateService } from 'src/app/private/domain/services/application-state.service';
 import { CachedUserAuthDetails } from '../../models/cached-data';
-import { LocalStorageService } from '../../../core/services/local-storage/local-storage.service';
+import { LocalStorageService } from '../../../Shared/services/local-storage.service';
 import { FacadeApplicationStateService } from '../../facades/facade-application-state.service';
 
 @Component({

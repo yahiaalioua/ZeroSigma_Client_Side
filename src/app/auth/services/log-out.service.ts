@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
+import { LocalStorageService } from 'src/app/Shared/services/local-storage.service';
 import { AuthStateService } from './auth-state.service';
 
 @Injectable({

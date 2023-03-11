@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { map, Observable } from 'rxjs';
-import { UserFacadeService } from 'src/app/core/facades/user-facade.service';
+import { FormBuilder} from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Userinfo } from 'src/app/core/Models/user-state';
 import { StoreService } from 'src/app/core/state/store.service';
+import { FacadeProfileAccountSettingsService } from 'src/app/private/facades/facade-profile-account-settings.service';
 
 @Component({
   selector: 'app-profile-settings',
@@ -12,12 +12,12 @@ import { StoreService } from 'src/app/core/state/store.service';
 })
 export class ProfileSettingsComponent implements OnInit {
 
-  constructor(private fB:FormBuilder, private userFacade:UserFacadeService,private store:StoreService) { }
+  constructor(private fB:FormBuilder, private facadeProfileAccount:FacadeProfileAccountSettingsService,private store:StoreService) { }
   UserInfoForm:any
   userInfo$:Observable<Userinfo>|undefined;
 
   ngOnInit(): void {
-    this.userInfo$=this.userFacade.userInfo$
+    this.userInfo$=this.facadeProfileAccount.userInfo$
     this.UserInfoForm=this.fB.group({
       linkedin:(''),
       twitter:(''),
@@ -25,7 +25,7 @@ export class ProfileSettingsComponent implements OnInit {
       website:(''),
       aboutMe:(''),
     })
-    this.userFacade.userInfo$.subscribe(credential=>{
+    this.facadeProfileAccount.userInfo$.subscribe(credential=>{
       this.UserInfoForm.setValue({
         linkedin:credential.Linkedin,
         twitter:credential.Twitter,
@@ -37,7 +37,7 @@ export class ProfileSettingsComponent implements OnInit {
   }
   update(){
     console.log(this.UserInfoForm.value)
-    this.userFacade.updateUserInfo(this.UserInfoForm.value)
+    this.facadeProfileAccount.updateUserInfo(this.UserInfoForm.value)
   }
 
 }

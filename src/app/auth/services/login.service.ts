@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, of, shareReplay, tap } from 'rxjs';
-import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
+import { LocalStorageService } from 'src/app/Shared/services/local-storage.service';
 import { StoreService } from 'src/app/core/state/store.service';
 import { SpinnerService } from 'src/app/Shared/services/spinner.service';
 import { ToastService } from 'src/app/Shared/services/toast.service';

@@ -1,6 +1,6 @@
 import { Component,OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModalService } from 'src/app/core/services/modal.service';
+import { FacadeProfileAccountSettingsService } from 'src/app/private/facades/facade-profile-account-settings.service';
 
 @Component({
   selector: 'app-reset-email',
@@ -8,18 +8,14 @@ import { ModalService } from 'src/app/core/services/modal.service';
   styleUrls: ['./reset-email.component.css']
 })
 export class ResetEmailComponent implements OnInit{
-  constructor(private modalService:ModalService) {}
+  constructor(private readonly facadeProfileAccount:FacadeProfileAccountSettingsService) {}
   approvalMessage$?:Observable<string>;
 
   ngOnInit(): void {
   }
   ResetEmail(formData:any){
     console.log(formData.current_email)
-    this.modalService.ResetEmail(formData.current_email,formData.new_email)
-    this.approvalMessage$=this.modalService.approvalMessage$
+    this.facadeProfileAccount.resetEmail(formData.current_email,formData.new_email)
+    this.approvalMessage$=this.facadeProfileAccount.approvalMessage$
   }
-
-
-
-
 }

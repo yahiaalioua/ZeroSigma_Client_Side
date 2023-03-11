@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, map, Observable } from 'rxjs';
-import { UserFacadeService } from 'src/app/core/facades/user-facade.service';
-import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
+import { map, Observable } from 'rxjs';
+import { LocalStorageService } from 'src/app/Shared/services/local-storage.service';
 import { UserState, UserStatus } from 'src/app/core/Models/user-state';
 import { StoreService } from 'src/app/core/state/store.service';
 import { AuthResponse } from '../models/auth-response';

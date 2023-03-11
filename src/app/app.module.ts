@@ -31,8 +31,8 @@ import { SearchSmartComponent } from './private/components/CalculateValueFeature
 import { SearchUIComponent } from './private/components/CalculateValueFeature/SearchFeature/search-ui/search-ui.component';
 import { CustomErrorHandlerService } from './core/errors/custom-error-handler.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { ToastComponent } from './Shared/Dialogs/Toaster/toast/toast.component';
-import { SpinnerComponent } from './Shared/Spinner/spinner/spinner.component';
+import { ToastComponent } from './Shared/components/toast/toast.component';
+import { SpinnerComponent } from './Shared/components/spinner/spinner.component';
 import { DashbordComponent } from './private/components/dashbord/dashbord.component';
 import { NavBarComponent } from './private/presentation-layer/nav-bar/nav-bar.component';
 

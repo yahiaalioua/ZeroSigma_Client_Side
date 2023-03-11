@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
-import { HttpCallsService } from 'src/app/core/services/http/http-database/http-calls.service';
-import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
+import { LocalStorageService } from 'src/app/Shared/services/local-storage.service';
 import { StoreService } from 'src/app/core/state/store.service';
+import { HttpDatabaseService } from '../../data-access/http-database.service';
 import { CachedUserAuthDetails } from '../../models/cached-data';
 
 
@@ -16,12 +16,12 @@ export class AccountSettingsService {
 
   constructor(
     private store:StoreService,
-    private httpCalls:HttpCallsService,
+    private httpDatabase:HttpDatabaseService,
     private storage:LocalStorageService
     ) {}
 
   putName(id:number,name:string){
-    return this.httpCalls.putName(id,name).pipe(
+    return this.httpDatabase.putName(id,name).pipe(
       tap((val:any)=>{
         this.updateLocalStorageName(name)
       }

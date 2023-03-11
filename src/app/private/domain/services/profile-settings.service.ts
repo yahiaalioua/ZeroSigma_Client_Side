@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { map} from 'rxjs';
-import { HttpCallsService } from 'src/app/core/services/http/http-database/http-calls.service';
-import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { StoreService } from 'src/app/core/state/store.service';
 import { UserInfoModel } from '../../models/user-info-model';
 
@@ -14,10 +12,7 @@ export class ProfileSettingsService {
   userInfo$=this.store.UserState$.pipe(map(state=>state.Userinfo));
 
   constructor(
-    private store:StoreService,
-    private httpCalls:HttpCallsService,
-    private storage:LocalStorageService
-    ) {}
+    private store:StoreService) {}
     updateUserInfo(userInfo:UserInfoModel):void{
       this.store.setState({
         ...this.store.GetUserState(),Userinfo:{...this.store.GetUserState().Userinfo,
