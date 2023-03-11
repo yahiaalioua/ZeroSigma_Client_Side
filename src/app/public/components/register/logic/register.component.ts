@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators} from '@angular/forms';
 import { Observable } from 'rxjs';
-import { AuthStateService } from 'src/app/auth/auth-state/auth-state.service';
 import { AuthErrorHandlerService } from 'src/app/auth/errors/auth-error-handler.service';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +13,9 @@ export class RegisterComponent implements OnInit {
   registerForm:any
   test={}
   errorNotification$?:Observable<string|null>
-  constructor(private fb:FormBuilder,private authservice:AuthService,private AuthError:AuthErrorHandlerService) {
+  constructor(
+    private fb:FormBuilder,
+    private facadeAuth:FacadeAuthService,private AuthError:AuthErrorHandlerService) {
    }
 
   ngOnInit(): void {
@@ -31,8 +32,8 @@ export class RegisterComponent implements OnInit {
   get password():void{
     return this.registerForm.get('password')
   }
-  Signup(data:any){
-    this.authservice.signup(data).subscribe()
+  signUp(data:any){
+    this.facadeAuth.signUp(data).subscribe()
   }
 
 

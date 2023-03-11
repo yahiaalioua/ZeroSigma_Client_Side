@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { map, Observable, observable } from 'rxjs';
-import { AuthStateService } from 'src/app/auth/auth-state/auth-state.service';
+import { AuthStateService } from 'src/app/auth/services/auth-state.service';
 import { UserFacadeService } from 'src/app/core/facades/user-facade.service';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { UserCredentials, UserState } from 'src/app/core/state/state-interfaces/user-state';

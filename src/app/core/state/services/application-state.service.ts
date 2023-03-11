@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs';
-import { HttpAuthServiceService } from 'src/app/auth/services/Http/http-auth-service.service';
+import { HttpAuthServiceService } from 'src/app/auth/data-access/http-auth-service.service';
 import { userInfoResponse } from 'src/app/core/Models/user-responses';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { localStorageState } from '../state-interfaces/local-storage-state';

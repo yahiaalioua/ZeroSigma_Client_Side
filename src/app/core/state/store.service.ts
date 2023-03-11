@@ -7,7 +7,7 @@ import { UserState } from './state-interfaces/user-state';
   providedIn: 'root'
 })
 export class StoreService {
-  currentState:UserState={
+  InitialState:UserState={
     UserCredentials:{
     id:undefined,
     email:'',
@@ -35,7 +35,7 @@ export class StoreService {
     },
     refreshToken:''
   }
-  private UserState:BehaviorSubject<UserState>=new BehaviorSubject<UserState>(this.currentState);
+  private UserState:BehaviorSubject<UserState>=new BehaviorSubject<UserState>(this.InitialState);
   UserState$:Observable<UserState>=this.UserState.asObservable()
   constructor() { }
   setState(NewUserState:UserState):void{

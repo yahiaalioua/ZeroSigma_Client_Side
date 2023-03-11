@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AuthStateService } from 'src/app/auth/auth-state/auth-state.service';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { ModalService } from 'src/app/core/services/modal.service';
+
 
 @Component({
   selector: 'app-delate-account',
@@ -11,7 +9,7 @@ import { ModalService } from 'src/app/core/services/modal.service';
 })
 export class DelateAccountComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DelateAccountComponent>,private auth:AuthService) { }
+  constructor(public dialogRef: MatDialogRef<DelateAccountComponent>) { }
   approvalMessage:string|undefined;
 
   ngOnInit(): void {
@@ -27,7 +25,7 @@ export class DelateAccountComponent implements OnInit {
     }
     else{
       if(userDetails.password===delateForm.password){
-        this.auth.logout();
+
         this.dialogRef.close();
       }
       else if(delateForm.password==undefined || delateForm.password=='' || delateForm.password==null){

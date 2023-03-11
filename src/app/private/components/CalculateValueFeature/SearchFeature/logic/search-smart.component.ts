@@ -32,7 +32,6 @@ export class SearchSmartComponent implements OnInit {
   }
   SendClickedData(data:string){
     this.StockDataService.UserSearchData.next(data)
-    this.StockDataService.UserSearchData$.pipe(tap((val)=>console.log(val))).subscribe()
   }
 
 }

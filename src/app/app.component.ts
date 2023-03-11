@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthStateService } from './auth/auth-state/auth-state.service';
-import { AuthErrorHandlerService } from './auth/errors/auth-error-handler.service';
+import { FacadeAuthService } from './auth/facade/facade-auth.service';
 
 
 @Component({
@@ -10,15 +9,13 @@ import { AuthErrorHandlerService } from './auth/errors/auth-error-handler.servic
 })
 export class AppComponent implements OnInit {
   title = 'alphavalue';
-  constructor(private auth:AuthStateService,private AuthErrors:AuthErrorHandlerService){}
-  isLoggedIn$=this.auth.isLoggedIn$
-  isLoggedOut$=this.auth.isLoggedOut$
+  constructor(
+    private facadeAuth:FacadeAuthService
+    ){}
+  isLoggedIn$=this.facadeAuth.isLoggedIn$
+  isLoggedOut$=this.facadeAuth.isLoggedOut$
 
   ngOnInit(){
-    this.auth.checkState()
-  }
-  RemoveAuthErrors():void{
-    this.AuthErrors.SetSignUpError(null);
-    this.AuthErrors.SetLoginError(null);
+    this.facadeAuth.checkState()
   }
 }

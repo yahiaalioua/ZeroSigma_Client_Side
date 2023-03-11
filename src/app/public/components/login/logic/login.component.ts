@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators,} from '@angular/forms';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { AuthErrorHandlerService } from 'src/app/auth/errors/auth-error-handler.service';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { login } from '../../../models/loginInterface';
+import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
+import { login } from '../../../../auth/models/login';
 
 
 @Component({
@@ -17,7 +17,9 @@ export class LoginComponent implements OnInit {
   registerData:any
   errorNotification$?:Observable<string|null>;
   isLoading$?:BehaviorSubject<boolean>;
-  constructor(private fb:FormBuilder,private Authservice:AuthService,private AuthError:AuthErrorHandlerService) { }
+  constructor(private fb:FormBuilder,
+    private facadeAuth:FacadeAuthService,
+    private AuthError:AuthErrorHandlerService) { }
 
   ngOnInit(): void {
     this.loginForm=this.fb.group({
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
       password:['',[Validators.required, Validators.minLength(8)]]
     })
     this.errorNotification$=this.AuthError.LoginError$;
-    this.isLoading$=this.Authservice.isLoading
+    this.isLoading$=this.facadeAuth.loadSpinner
   }
 
 
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
 
 
   Login(data:any){
-    this.Authservice.login(data).subscribe()
+    this.facadeAuth.login(data).subscribe()
     this.isLoading$?.next(true)
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthStateService } from 'src/app/auth/auth-state/auth-state.service';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
 
 @Component({
   selector: 'app-nav-bar-container-comp',
@@ -9,7 +8,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class NavBarContainerCompComponent implements OnInit {
 
-  constructor(private auth:AuthService) { }
+  constructor(private auth:FacadeAuthService) { }
 
   ngOnInit(): void {
   }

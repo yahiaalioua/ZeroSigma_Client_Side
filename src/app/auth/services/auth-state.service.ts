@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { UserFacadeService } from 'src/app/core/facades/user-facade.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
-import { UserStatus } from 'src/app/core/state/state-interfaces/user-state';
+import { UserState, UserStatus } from 'src/app/core/state/state-interfaces/user-state';
 import { StoreService } from 'src/app/core/state/store.service';
-import { AuthResponse } from '../models/auth-model';
+import { AuthResponse } from '../models/auth-response';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +21,24 @@ export class AuthStateService  {
 
 
   constructor(private store:StoreService,private localStorageService:LocalStorageService) {}
-
+  initialState(){
+    return this.store.InitialState
+  }
+  setAuthState(newState:UserState){
+    return this.store.setState(newState)
+  }
+  getCurrentState(){
+    return this.store.GetUserState()
+  }
+  setLocalStorageState(newState:AuthResponse){
+    return this.store.setLocalStorageState(newState)
+  }
   checkState(){
     let AuthDetails:any=this.localStorageService.getItem('AuthDetails')
     AuthDetails=JSON.parse(AuthDetails);
     if(AuthDetails){
       if(AuthDetails.accessToken){
-        this.store.setState({...this.store.GetUserState(), UserStatus:{isLoggedIn:true,isLoggedOut:false}
+        this.setAuthState({...this.store.GetUserState(), UserStatus:{isLoggedIn:true,isLoggedOut:false}
           })
       }
       else return
