@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { map, switchMap } from 'rxjs';
-import { AuthResponse } from 'src/app/auth/models/auth-response';
-import { HttpAuthServiceService } from 'src/app/auth/data-access/http-auth-service.service';
-import { ApplicationStateService } from 'src/app/core/state/services/application-state.service';
-import { StoreService } from 'src/app/core/state/store.service';
-import { CachedUserAuthDetails } from '../../../core/Models/cached-data';
+import { ApplicationStateService } from 'src/app/private/domain/services/application-state.service';
+import { CachedUserAuthDetails } from '../../models/cached-data';
 import { LocalStorageService } from '../../../core/services/local-storage/local-storage.service';
+import { FacadeApplicationStateService } from '../../facades/facade-application-state.service';
 
 @Component({
   selector: 'app-dashbord',
@@ -14,7 +11,10 @@ import { LocalStorageService } from '../../../core/services/local-storage/local-
 })
 export class DashbordComponent implements OnInit {
 
-  constructor(private readonly applicationStateService:ApplicationStateService,private readonly Storage:LocalStorageService) { }
+  constructor(
+    private readonly Storage:LocalStorageService,
+    private readonly facadeApplicationService:FacadeApplicationStateService
+    ) { }
 
 
 
@@ -23,9 +23,9 @@ export class DashbordComponent implements OnInit {
     if (cachedAuthDetails!=null){
     let cachedAuthDetailsObject:CachedUserAuthDetails=JSON.parse(cachedAuthDetails);
       let userId:number=cachedAuthDetailsObject.payload.id
-      this.applicationStateService.SetApplicationState$(userId).subscribe();
+      this.facadeApplicationService.setApplicationState$(userId).subscribe();
     }
-    this.applicationStateService.setLocalStorageState()
+    this.facadeApplicationService.setLocalStorageState()
   }
 
 }

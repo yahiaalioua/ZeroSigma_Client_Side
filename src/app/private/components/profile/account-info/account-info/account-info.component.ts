@@ -4,7 +4,7 @@ import { map, Observable, observable } from 'rxjs';
 import { AuthStateService } from 'src/app/auth/services/auth-state.service';
 import { UserFacadeService } from 'src/app/core/facades/user-facade.service';
 import { ModalService } from 'src/app/core/services/modal.service';
-import { UserCredentials, UserState } from 'src/app/core/state/state-interfaces/user-state';
+import { UserCredentials, UserState } from 'src/app/core/Models/user-state';
 import { StoreService } from 'src/app/core/state/store.service';
 import { DelateAccountComponent } from '../../delateAccount/delate-account/delate-account.component';
 import { ResetEmailComponent } from '../../reset-email/reset-email.component';

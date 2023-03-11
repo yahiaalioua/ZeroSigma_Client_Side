@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { UserState } from 'src/app/core/state/state-interfaces/user-state';
+import { UserState } from 'src/app/core/Models/user-state';
 import { SpinnerService } from 'src/app/Shared/services/spinner.service';
 import { AuthResponse } from '../models/auth-response';
 import { login } from '../models/login';

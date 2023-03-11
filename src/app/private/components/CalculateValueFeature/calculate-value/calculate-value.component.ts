@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, shareReplay, switchMap } from 'rxjs';
-import { ChartService } from 'src/app/core/charts/chart.service';
+import { ChartService } from 'src/app/private/domain/charts/chart.service';
 import { HttpStockData } from 'src/app/core/services/http/http-external/http-stock-data';
 import { DataHelperService } from 'src/app/core/services/utils/data-helper.service';
 

@@ -1,7 +1,7 @@
 import { HttpClient,} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, mergeMap, Observable, of, OperatorFunction, shareReplay, switchMap, tap } from 'rxjs';
-import { StockData } from '../../../Models/stock-data-series';
+import { StockData } from '../../../../private/models/stock-data-series';
 import { DatePipe } from '@angular/common';
 import { ToastService } from 'src/app/Shared/services/toast.service';
 import { DataHelperService } from '../../utils/data-helper.service';

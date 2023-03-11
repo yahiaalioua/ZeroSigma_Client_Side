@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { UserFacadeService } from 'src/app/core/facades/user-facade.service';
-import { Userinfo } from 'src/app/core/state/state-interfaces/user-state';
+import { Userinfo } from 'src/app/core/Models/user-state';
 import { StoreService } from 'src/app/core/state/store.service';
 
 @Component({

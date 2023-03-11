@@ -1,39 +1,24 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { getMatIconFailedToSanitizeUrlError } from '@angular/material/icon';
-import { BehaviorSubject, catchError, map, of, switchMap, tap } from 'rxjs';
-import { Userinfo, UserState } from 'src/app/core/Models/user-state';
+import { Injectable } from '@angular/core';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { HttpCallsService } from 'src/app/core/services/http/http-database/http-calls.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { StoreService } from 'src/app/core/state/store.service';
-import { CachedUserAuthDetails } from '../../private/models/cached-data';
-import { HttpCallsService } from '../services/http/http-database/http-calls.service';
-import { LocalStorageService } from '../services/local-storage/local-storage.service';
+import { CachedUserAuthDetails } from '../../models/cached-data';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserFacadeService {
+export class AccountSettingsService {
+
   userCredentials$=this.store.UserState$.pipe(map(state=>state.UserCredentials));
   userInfo$=this.store.UserState$.pipe(map(state=>state.Userinfo));
-
-
-  updateUserInfo(userInfo:any):void{
-    const{linkedin,twitter,youTube,website,aboutMe}=userInfo
-    this.store.setState({
-      ...this.store.GetUserState(),Userinfo:{...this.store.GetUserState().Userinfo,
-         Linkedin:linkedin,
-         Twitter:twitter,
-         Youtube:youTube,
-         Website:website,
-         About_me:aboutMe,
-        }
-    })
-  }
 
   constructor(
     private store:StoreService,
     private httpCalls:HttpCallsService,
     private storage:LocalStorageService
     ) {}
-
 
   putName(id:number,name:string){
     return this.httpCalls.putName(id,name).pipe(
@@ -52,6 +37,7 @@ export class UserFacadeService {
       ...this.store.getLocalStorageState().payload,name:name  }
     })
   }
+
   updateName(name:string){
     let userDetails:string|null=localStorage.getItem('AuthDetails');
     if(!userDetails){
@@ -64,6 +50,5 @@ export class UserFacadeService {
         this.store.setState({...this.store.GetUserState(),UserCredentials:{...this.store.GetUserState().UserCredentials,fullName:name}});
       }
   }
-
 
 }

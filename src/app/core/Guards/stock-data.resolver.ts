@@ -8,7 +8,7 @@ import { catchError, combineLatest, forkJoin, mergeMap, Observable, of, switchMa
 import { ToastService } from 'src/app/Shared/services/toast.service';
 import { HttpErrorHandlerService } from '../errors/http-error-handler.service';
 import { HttpStockData } from '../services/http/http-external/http-stock-data';
-import { StockData } from '../Models/stock-data-series';
+import { StockData } from '../../private/models/stock-data-series';
 
 @Injectable({
   providedIn: 'root'

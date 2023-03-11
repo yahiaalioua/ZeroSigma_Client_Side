@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter,Observable,Subject, switchMap, tap } from 'rxjs';
-import { Top50Companies } from 'src/app/core/Models/stock-listed-companies';
+import { Top50Companies } from 'src/app/private/data-access/stock-listed-companies';
 import { HttpStockData } from 'src/app/core/services/http/http-external/http-stock-data';
 import { SearchFeatureService } from 'src/app/core/services/search-feature.service';
 

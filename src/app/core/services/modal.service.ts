@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
 import { BehaviorSubject, catchError, Observable, of, switchMap, tap } from 'rxjs';
 import { StoreService } from 'src/app/core/state/store.service';
-import { CachedUserAuthDetails } from '../Models/cached-data';
+import { CachedUserAuthDetails } from '../../private/models/cached-data';
 import { HttpCallsService } from './http/http-database/http-calls.service';
 import { LocalStorageService } from './local-storage/local-storage.service';
 

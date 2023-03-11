@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { localStorageState } from './state-interfaces/local-storage-state';
-import { UserState } from './state-interfaces/user-state';
+import { localStorageState } from '../Models/local-storage-state';
+import { UserState } from '../Models/user-state';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class StoreService {
     },
     refreshToken:''
   }
-  private UserState:BehaviorSubject<UserState>=new BehaviorSubject<UserState>(this.InitialState);
+  private readonly UserState:BehaviorSubject<UserState>=new BehaviorSubject<UserState>(this.InitialState);
   UserState$:Observable<UserState>=this.UserState.asObservable()
   constructor() { }
   setState(NewUserState:UserState):void{
