@@ -10,7 +10,7 @@ import { HomeComponent } from './private/components/home/home.component';
 import { AccountInfoComponent } from './private/components/profile/account-info/account-info/account-info.component';
 import { ProfileSettingsComponent } from './private/components/profile/profile-settings/profile-settings.component';
 import { ProfileComponent } from './private/components/profile/profile.component';
-import { ValuationPageComponent } from './private/components/valuation-page/valuation-page.component';
+import { ValuationPageComponent } from './private/presentation-layer/valuation-page/valuation-page.component';
 import { PageNotFoundComponent } from './public/components/pageNotFound/page-not-found.component';
 
 const routes: Routes = [

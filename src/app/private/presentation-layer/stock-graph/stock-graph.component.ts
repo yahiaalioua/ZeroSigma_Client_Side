@@ -1,8 +1,6 @@
 
 import { Component, Input, OnInit} from "@angular/core";
-import { ActivatedRoute} from "@angular/router";
-
-import { map, shareReplay} from "rxjs";
+import { map} from "rxjs";
 
 @Component({
   selector: 'app-stock-graph',
@@ -10,9 +8,7 @@ import { map, shareReplay} from "rxjs";
   styleUrls: ['./stock-graph.component.css']
 })
 export class StockGraphComponent implements OnInit {
-  companyName:string=''
   chartOptions:any;
-
 
   @Input()getChartOptions:any
   @Input()chartData:any
@@ -21,6 +17,5 @@ export class StockGraphComponent implements OnInit {
     this.chartData.pipe(map((data:any)=>{
       this.chartOptions=this.getChartOptions(data)
     })).subscribe();
-
   }
 }

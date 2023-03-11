@@ -6,12 +6,9 @@ import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
   templateUrl: './nav-bar-container-comp.component.html',
   styleUrls: ['./nav-bar-container-comp.component.css']
 })
-export class NavBarContainerCompComponent implements OnInit {
+export class NavBarContainerCompComponent{
 
   constructor(private auth:FacadeAuthService) { }
-
-  ngOnInit(): void {
-  }
   logout(){
     this.auth.logout()
   }

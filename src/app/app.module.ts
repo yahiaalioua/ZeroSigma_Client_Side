@@ -9,7 +9,7 @@ import { PageNotFoundComponent } from './public/components/pageNotFound/page-not
 import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginFormComponent } from './public/components/login/ui/login-form.component';
 import { RegisterFormComponent } from './public/components/register/ui/register-form.component';
-import { NavBarContainerCompComponent } from './private/components/navbar/nav-bar-container-comp.component';
+import { NavBarContainerCompComponent } from './private/components/navbar-container/nav-bar-container-comp.component';
 import {MatIconModule} from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './private/components/profile/profile.component';
@@ -18,22 +18,23 @@ import { AccountInfoComponent } from './private/components/profile/account-info/
 import { ProfileSettingsComponent } from './private/components/profile/profile-settings/profile-settings.component';
 import { ResetEmailComponent } from './private/components/profile/reset-email/reset-email.component';
 import { DelateAccountComponent } from './private/components/profile/delateAccount/delate-account/delate-account.component';
-import { ValuationPageComponent } from './private/components/valuation-page/valuation-page.component';
+import { ValuationPageComponent } from './private/presentation-layer/valuation-page/valuation-page.component';
 import { CalculateValueComponent } from './private/components/CalculateValueFeature/calculate-value/calculate-value.component';
-import { DisplayValuationComponent } from './private/components/CalculateValueFeature/calculate-value/display-valuation/display-valuation.component';
-import { StockGraphComponent } from './private/components/CalculateValueFeature/calculate-value/stock-graph/stock-graph.component';
+import { DisplayValuationComponent } from './private/presentation-layer/display-valuation/display-valuation.component';
+import { StockGraphComponent } from './private/presentation-layer/stock-graph/stock-graph.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './Shared/Pipes/search.pipe';
 import { DatePipe } from '@angular/common';
 import { SearchSmartComponent } from './private/components/CalculateValueFeature/SearchFeature/logic/search-smart.component';
-import { SearchUIComponent } from './private/components/CalculateValueFeature/SearchFeature/ui/search-ui.component';
+import { SearchUIComponent } from './private/components/CalculateValueFeature/SearchFeature/search-ui/search-ui.component';
 import { CustomErrorHandlerService } from './core/errors/custom-error-handler.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ToastComponent } from './Shared/Dialogs/Toaster/toast/toast.component';
 import { SpinnerComponent } from './Shared/Spinner/spinner/spinner.component';
 import { DashbordComponent } from './private/components/dashbord/dashbord.component';
+import { NavBarComponent } from './private/presentation-layer/nav-bar/nav-bar.component';
 
 
 
@@ -66,7 +67,8 @@ import { DashbordComponent } from './private/components/dashbord/dashbord.compon
     SearchUIComponent,
     ToastComponent,
     SpinnerComponent,
-    DashbordComponent
+    DashbordComponent,
+    NavBarComponent
 
   ],
   imports: [
