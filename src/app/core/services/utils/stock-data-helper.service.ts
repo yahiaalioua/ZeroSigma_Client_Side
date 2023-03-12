@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataHelperService {
-  public lastTikerData:BehaviorSubject<object>=new BehaviorSubject<object>({Ticker:'meta'});
+export class StockDataHelperService {
+  UserSearchData:BehaviorSubject<string>=new BehaviorSubject<string>('Meta');
+  UserSearchData$:Observable<string>=this.UserSearchData.asObservable();
+  public lastTikerData:BehaviorSubject<object>=new BehaviorSubject<object>({ticker:'meta'});
   public lastTikerData$:Observable<object>=this.lastTikerData.asObservable();
   public stockData:BehaviorSubject<any>=new BehaviorSubject<any>(null);
   public stockData$:Observable<any>=this.stockData.asObservable();

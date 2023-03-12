@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataHelperService } from './data-helper.service';
+import { DataHelperService } from './stock-data-helper.service';
 
 describe('DataHelperService', () => {
   let service: DataHelperService;

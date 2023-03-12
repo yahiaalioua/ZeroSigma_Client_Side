@@ -7,17 +7,15 @@ import { Observable, Subject } from 'rxjs';
   templateUrl: './search-ui.component.html',
   styleUrls: ['./search-ui.component.css']
 })
-export class SearchUIComponent implements OnInit {
+export class SearchUIComponent {
 
-  constructor() { }
+
   @Input()searchInput?:any
   @Input()Companies$?:Observable<string[]>
   @Output()InputData:EventEmitter<string>=new EventEmitter();
   @Output()ClickedData:EventEmitter<string>=new EventEmitter();
   @ViewChild("input") input!: ElementRef;
   @ViewChild("box") box!:ElementRef;
-  ngOnInit(): void {
-  }
   sendInputData(){
     this.InputData.emit(this.searchInput.value);
   }

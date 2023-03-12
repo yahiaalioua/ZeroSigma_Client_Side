@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { localStorageState } from '../Models/local-storage-state';
-import { UserState } from '../Models/user-state';
+import { localStorageState } from '../models/local-storage-state';
+import { ApplicationState,} from '../models/application-state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
-  InitialState:UserState={
+  InitialState:ApplicationState={
     UserCredentials:{
     id:undefined,
     email:'',
@@ -24,8 +24,17 @@ export class StoreService {
     UserStatus:{
       isLoggedIn:false,
       isLoggedOut:true
+    },
+    StockData:{
+      price:0,
+      companyName:'',
+      ticker:'',
+      date:new Date(),
+      change:0,
+      series:[]
     }
   }
+
   localStorageInitialState:localStorageState={
     accessToken:'',
     payload:{
@@ -35,14 +44,14 @@ export class StoreService {
     },
     refreshToken:''
   }
-  private readonly UserState:BehaviorSubject<UserState>=new BehaviorSubject<UserState>(this.InitialState);
-  UserState$:Observable<UserState>=this.UserState.asObservable()
+  private readonly ApplicationState:BehaviorSubject<ApplicationState>=new BehaviorSubject<ApplicationState>(this.InitialState);
+  applicationState$:Observable<ApplicationState>=this.ApplicationState.asObservable()
   constructor() { }
-  setState(NewUserState:UserState):void{
-    this.UserState.next(NewUserState)
+  setState(newUserState:ApplicationState):void{
+    this.ApplicationState.next(newUserState)
   }
-  GetUserState():UserState{
-    return this.UserState.getValue()
+  getApplicationState():ApplicationState{
+    return this.ApplicationState.getValue()
   }
   private localStorageState:BehaviorSubject<localStorageState>=new BehaviorSubject<localStorageState>(this.localStorageInitialState)
   localStorageState$:Observable<localStorageState>=this.localStorageState.asObservable();

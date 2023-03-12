@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { map, Observable, observable } from 'rxjs';
-import { AuthStateService } from 'src/app/auth/services/auth-state.service';
-import { ModalService } from 'src/app/core/services/modal.service';
-import { UserCredentials, UserState } from 'src/app/core/Models/user-state';
-import { StoreService } from 'src/app/core/state/store.service';
+import { map, Observable} from 'rxjs';
+import { ModalService } from 'src/app/Shared/services/modal.service';
 import { DelateAccountComponent } from '../../delateAccount/delate-account/delate-account.component';
 import { ResetEmailComponent } from '../../reset-email/reset-email.component';
 import { FacadeProfileAccountSettingsService } from 'src/app/private/facades/facade-profile-account-settings.service';

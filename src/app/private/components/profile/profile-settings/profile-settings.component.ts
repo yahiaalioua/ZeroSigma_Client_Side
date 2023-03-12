@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder} from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Userinfo } from 'src/app/core/Models/user-state';
+import { Userinfo } from 'src/app/core/models/application-state';
 import { StoreService } from 'src/app/core/state/store.service';
 import { FacadeProfileAccountSettingsService } from 'src/app/private/facades/facade-profile-account-settings.service';
 

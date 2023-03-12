@@ -11,8 +11,8 @@ import { CachedUserAuthDetails } from '../../models/cached-data';
 })
 export class AccountSettingsService {
 
-  userCredentials$=this.store.UserState$.pipe(map(state=>state.UserCredentials));
-  userInfo$=this.store.UserState$.pipe(map(state=>state.Userinfo));
+  userCredentials$=this.store.applicationState$.pipe(map(state=>state.UserCredentials));
+  userInfo$=this.store.applicationState$.pipe(map(state=>state.Userinfo));
 
   constructor(
     private store:StoreService,
@@ -47,7 +47,7 @@ export class AccountSettingsService {
       const CachedUserDetails:CachedUserAuthDetails=JSON.parse(userDetails);
       const UserId=CachedUserDetails.payload.id
       this.putName(UserId,name).subscribe()
-        this.store.setState({...this.store.GetUserState(),UserCredentials:{...this.store.GetUserState().UserCredentials,fullName:name}});
+        this.store.setState({...this.store.getApplicationState(),UserCredentials:{...this.store.getApplicationState().UserCredentials,fullName:name}});
       }
   }
 

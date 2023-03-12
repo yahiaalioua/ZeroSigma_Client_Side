@@ -46,7 +46,7 @@ export class ResetEmailService {
       const UserId=CachedUserDetails.payload.id
       if(CachedUserDetails.payload.email===CurrentEmail){
         this.putEmail(UserId,NewEmail).subscribe()
-        this.store.setState({...this.store.GetUserState(),UserCredentials:{...this.store.GetUserState().UserCredentials,email:NewEmail}});
+        this.store.setState({...this.store.getApplicationState(),UserCredentials:{...this.store.getApplicationState().UserCredentials,email:NewEmail}});
       }
       else if(CachedUserDetails.payload.email!=CurrentEmail){
         this.approvalMessage.next('current email is wrong')

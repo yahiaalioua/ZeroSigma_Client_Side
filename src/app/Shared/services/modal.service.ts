@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
-import { StoreService } from 'src/app/core/state/store.service';
-import { HttpDatabaseService } from 'src/app/private/data-access/http-database.service';
-import { LocalStorageService } from '../../Shared/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,24 +1,19 @@
 import { Injectable } from '@angular/core';
-import {
-  Router, Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot
-} from '@angular/router';
-import { catchError, combineLatest, forkJoin, mergeMap, Observable, of, switchMap } from 'rxjs';
-import { ToastService } from 'src/app/Shared/services/toast.service';
+import {Resolve,RouterStateSnapshot,ActivatedRouteSnapshot} from '@angular/router';
+import { catchError,Observable, of, switchMap } from 'rxjs';
 import { HttpErrorHandlerService } from '../errors/http-error-handler.service';
-import { HttpStockData } from '../services/http/http-external/http-stock-data';
 import { StockData } from '../../private/models/stock-data-series';
+import { FacadeStockDataService } from 'src/app/private/facades/facade-stock-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockDataResolver implements Resolve<StockData|unknown> {
 
-  constructor(private readonly httpData:HttpStockData,private httpErrorHandler:HttpErrorHandlerService) {}
+  constructor(private readonly facadeStockData:FacadeStockDataService,private httpErrorHandler:HttpErrorHandlerService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<StockData|unknown> {
-    return this.httpData.UserSearchData$.pipe(
-      switchMap(data=>this.httpData.StockData$(data)),
+    return this.facadeStockData.UserSearchData$.pipe(
+      switchMap(data=>this.facadeStockData.stockData(data)),
       catchError(err=>{
         this.httpErrorHandler.HandleResolverError('We apoligize, but our stock data and company valuation is currently unavailable')
         return of(null)

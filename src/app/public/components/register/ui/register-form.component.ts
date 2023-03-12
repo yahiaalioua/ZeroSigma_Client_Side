@@ -8,17 +8,14 @@ import { Observable, tap } from 'rxjs';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
-export class RegisterFormComponent implements OnInit {
+export class RegisterFormComponent  {
 
   @Input()registerForm:any;
   @Input()email:any ;
   @Input()password:any;
   @Input()errorNotification$?:Observable<string|null>;
   @Output() registeredUser = new EventEmitter()
-  constructor() { }
 
-  ngOnInit(): void {
-  }
   SubmitForm(){
     this.registeredUser.emit(this.registerForm.value);
   }

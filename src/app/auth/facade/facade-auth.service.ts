@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { UserState } from 'src/app/core/Models/user-state';
+import { ApplicationState } from 'src/app/core/models/application-state';
 import { SpinnerService } from 'src/app/Shared/services/spinner.service';
 import { AuthResponse } from '../models/auth-response';
 import { login } from '../models/login';
@@ -38,7 +38,7 @@ export class FacadeAuthService {
   logout(){
     return this.logOutService.logout()
   }
-  setAuthState(newState:UserState){
+  setAuthState(newState:ApplicationState){
     return this.authState.setAuthState(newState)
   }
   getCurrentState(){

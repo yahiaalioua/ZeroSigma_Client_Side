@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter,Observable,Subject, switchMap, tap } from 'rxjs';
 import { Top50Companies } from 'src/app/private/data-access/stock-listed-companies';
-import { HttpStockData } from 'src/app/core/services/http/http-external/http-stock-data';
 import { SearchFeatureService } from 'src/app/core/services/search-feature.service';
+import { FacadeStockDataService } from '../../facades/facade-stock-data.service';
 
 @Component({
   selector: 'app-search-smart',
@@ -13,7 +13,7 @@ import { SearchFeatureService } from 'src/app/core/services/search-feature.servi
 export class SearchSmartComponent implements OnInit {
 
   AllCompanies=Top50Companies;
-  constructor(private searchSer:SearchFeatureService,private StockDataService:HttpStockData) { }
+  constructor(private searchSer:SearchFeatureService,private facadeStockData:FacadeStockDataService) { }
 
   CompaniesSubj$:Subject<string[]>=this.searchSer.CompaniesSubj$
   Companies$:Observable<string[]>=this.searchSer.Companies$
@@ -28,10 +28,10 @@ export class SearchSmartComponent implements OnInit {
     ).subscribe(val=>this.CompaniesSubj$.next(val))
   }
   SendInputData(inputData:string){
-    this.StockDataService.UserSearchData.next(inputData);
+    this.facadeStockData.UserSearchData.next(inputData);
   }
   SendClickedData(data:string){
-    this.StockDataService.UserSearchData.next(data)
+    this.facadeStockData.UserSearchData.next(data)
   }
 
 }

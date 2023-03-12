@@ -16,5 +16,7 @@ export class DisplayValuationComponent {
   @Input()tickr?:Observable<string>;
   @Input()chartOptions:any;
   @Input()chartData:any;
+
+
 }
 

@@ -10,8 +10,8 @@ export class FacadeApplicationStateService {
     private readonly applicationState:ApplicationStateService
   ) { }
 
-  setApplicationState$(id:number){
-    return this.applicationState.setApplicationState$(id)
+  setApplicationUserState$(id:number){
+    return this.applicationState.setApplicationUserState$(id)
   }
   setLocalStorageState(){
     return this.applicationState.setLocalStorageState()

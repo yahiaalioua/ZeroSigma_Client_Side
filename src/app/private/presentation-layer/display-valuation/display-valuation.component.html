@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <ng-container *ngIf="((data|async )!=null)">
+  <ng-container *ngIf="((data|async)!=null)">
     <div class="stock-info-1">
       <div class="ticker-stock-div">
         <p>Price: {{(price|async)|currency : 'USD' : 'symbol' : '1.2-2'}}</p>
