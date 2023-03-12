@@ -4,11 +4,12 @@ import { BehaviorSubject, debounceTime, distinctUntilChanged, filter,Observable,
 import { Top50Companies } from 'src/app/private/data-access/stock-listed-companies';
 import { SearchFeatureService } from 'src/app/core/services/search-feature.service';
 import { FacadeStockDataService } from '../../facades/facade-stock-data.service';
+import { ChangeDetectionStrategy } from '@angular/compiler';
 
 @Component({
   selector: 'app-search-smart',
   templateUrl: './search-smart.component.html',
-  styleUrls: ['./search-smart.component.css']
+  styleUrls: ['./search-smart.component.css'],
 })
 export class SearchSmartComponent implements OnInit {
 
@@ -29,9 +30,11 @@ export class SearchSmartComponent implements OnInit {
   }
   SendInputData(inputData:string){
     this.facadeStockData.UserSearchData.next(inputData);
+    this.facadeStockData.setStockDataState().subscribe()
   }
   SendClickedData(data:string){
     this.facadeStockData.UserSearchData.next(data)
+    this.facadeStockData.setStockDataState().subscribe()
   }
 
 }

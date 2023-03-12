@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit} from "@angular/core";
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import { map} from "rxjs";
 
 @Component({
@@ -7,15 +7,14 @@ import { map} from "rxjs";
   templateUrl: './stock-graph.component.html',
   styleUrls: ['./stock-graph.component.css']
 })
-export class StockGraphComponent implements OnInit {
-  chartOptions:any;
-
-  @Input()getChartOptions:any
-  @Input()chartData:any
-
-  ngOnInit(): void {
+export class StockGraphComponent implements OnChanges {
+  ngOnChanges(changes: SimpleChanges): void {
     this.chartData.pipe(map((data:any)=>{
       this.chartOptions=this.getChartOptions(data)
     })).subscribe();
   }
+  chartOptions:any;
+
+  @Input()getChartOptions:any
+  @Input()chartData:any
 }

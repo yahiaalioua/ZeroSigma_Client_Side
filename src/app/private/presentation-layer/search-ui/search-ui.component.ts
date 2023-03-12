@@ -1,11 +1,12 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search-ui',
   templateUrl: './search-ui.component.html',
-  styleUrls: ['./search-ui.component.css']
+  styleUrls: ['./search-ui.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchUIComponent {
 

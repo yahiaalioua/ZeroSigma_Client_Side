@@ -29,4 +29,7 @@ export class FacadeStockDataService {
   setStockDataState(){
     return this.applicationStateService.setStockDataState()
   }
+  getStockDataState(){
+    return this.applicationStateService.getStockDataState()
+  }
 }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { StockData } from '../../models/stock-data-series';
 
 @Injectable({
   providedIn: 'root'

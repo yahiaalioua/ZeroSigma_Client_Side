@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, switchMap, tap} from 'rxjs';
+import { ApplicationState } from 'src/app/core/models/application-state';
 import { StockDataHelperService } from 'src/app/core/services/utils/stock-data-helper.service';
 import { userInfoResponse } from 'src/app/private/models/user-responses';
 import { LocalStorageService } from 'src/app/Shared/services/local-storage.service';
@@ -49,6 +50,9 @@ export class ApplicationStateService {
     const LocalStorageData:string=this.storage.getItem('AuthDetails')
     const LocalStorageState:localStorageState=JSON.parse(LocalStorageData);
     this.store.setLocalStorageState(LocalStorageState);
+  }
+  getStockDataState(){
+    return this.store.applicationState$.pipe(map((state:ApplicationState)=>state.StockData))
   }
 
 }

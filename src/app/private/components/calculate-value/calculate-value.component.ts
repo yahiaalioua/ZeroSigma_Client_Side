@@ -5,6 +5,7 @@ import { StockDataHelperService } from 'src/app/core/services/utils/stock-data-h
 import { FacadeStockDataService } from '../../facades/facade-stock-data.service';
 import { StoreService } from 'src/app/core/state/store.service';
 import { HttpFinancialModelingApiService } from '../../data-access/http-financial-modeling-api.service';
+import { StockDataState } from 'src/app/core/models/application-state';
 
 
 @Component({
@@ -15,9 +16,9 @@ import { HttpFinancialModelingApiService } from '../../data-access/http-financia
 export class CalculateValueComponent {
 
   data?:Observable<any>;
-  price?:Observable<string>;
-  change?:Observable<string>;
-  date?:Observable<string>;
+  price?:Observable<number>;
+  change?:Observable<number>;
+  date?:Observable<Date>;
   name?:Observable<string>;
   tickr?:Observable<string>;
   constructor(
@@ -29,16 +30,15 @@ export class CalculateValueComponent {
     ) { }
 
   chartOptions:any=this.chartService.chartOption
-  chartData=this.facadeStockData.UserSearchData$.pipe(
-    switchMap(data=>this.facadeStockData.stockData(data)))
+  chartData=this.facadeStockData.getStockDataState().pipe(map((data:StockDataState)=>data.series))
 
   ngOnInit(): void {
-    this.price=this.httpData.stockData$.pipe(map(data=>data.close));
-    this.change=this.httpData.stockData$.pipe(map(data=>data.change));
-    this.date=this.httpData.stockData$.pipe(map(data=>data.date));
-    this.data=this.httpData.stockData$.pipe();
-    this.name=this.httpData.companyInfo$.pipe(map(data=>data.name))
-    this.tickr=this.httpData.companyInfo$.pipe(map(data=>data.symbol))
+    this.price=this.facadeStockData.getStockDataState().pipe(map((data:StockDataState)=>data.price))
+    this.change=this.facadeStockData.getStockDataState().pipe(map((data:StockDataState)=>data.change))
+    this.date=this.facadeStockData.getStockDataState().pipe(map((data:StockDataState)=>data.date))
+    this.data=this.facadeStockData.getStockDataState()
+    this.name=this.facadeStockData.getStockDataState().pipe(map((data:StockDataState)=>data.companyName))
+    this.tickr=this.facadeStockData.getStockDataState().pipe(map((data:StockDataState)=>data.ticker))
 
   }
   click(){
