@@ -8,8 +8,9 @@ import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
 })
 export class NavBarContainerCompComponent{
 
-  constructor(private auth:FacadeAuthService) { }
+  constructor(private facadeAuthService:FacadeAuthService) { }
+
   logout(){
-    this.auth.logout()
+    this.facadeAuthService.logout()
   }
 }

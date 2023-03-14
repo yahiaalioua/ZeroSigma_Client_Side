@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, of } from 'rxjs';
-import { ToastService } from 'src/app/Shared/services/toast.service';
 import { AuthErrorHandlerService } from '../errors/auth-error-handler.service';
 import { register } from '../models/register';
 import { HttpAuthServiceService } from '../data-access/http-auth-service.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Injectable({
   providedIn: 'root'

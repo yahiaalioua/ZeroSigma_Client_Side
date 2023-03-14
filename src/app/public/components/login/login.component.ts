@@ -3,7 +3,8 @@ import { FormBuilder,Validators,} from '@angular/forms';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { AuthErrorHandlerService } from 'src/app/auth/errors/auth-error-handler.service';
 import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
-import { login } from '../../../../auth/models/login';
+import { login } from 'src/app/auth/models/login';
+
 
 
 @Component({

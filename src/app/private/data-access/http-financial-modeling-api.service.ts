@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, combineLatest, forkJoin, map, Observable, shareReplay, switchMap} from 'rxjs';
+import { catchError, combineLatest, forkJoin, map, Observable, shareReplay, switchMap, zip} from 'rxjs';
 import { StockDataHelperService } from 'src/app/core/services/utils/stock-data-helper.service';
 import { StoreService } from 'src/app/core/state/store.service';
-import { ToastService } from 'src/app/Shared/services/toast.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
+
 import { SearchCompany } from '../models/search-company';
 import { StockData } from '../models/stock-data-series';
 

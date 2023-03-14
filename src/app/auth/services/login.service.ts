@@ -4,7 +4,7 @@ import { BehaviorSubject, catchError, map, Observable, of, shareReplay, tap } fr
 import { LocalStorageService } from 'src/app/Shared/services/local-storage.service';
 import { StoreService } from 'src/app/core/state/store.service';
 import { SpinnerService } from 'src/app/Shared/services/spinner.service';
-import { ToastService } from 'src/app/Shared/services/toast.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { AuthErrorHandlerService } from '../errors/auth-error-handler.service';
 import { AuthResponse } from '../models/auth-response';
 import { login } from '../models/login';

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ToastService } from 'src/app/Shared/services/toast.service';
+import { ToastService } from '../../services/toast.service';
+
 
 @Component({
   selector: 'app-toast',

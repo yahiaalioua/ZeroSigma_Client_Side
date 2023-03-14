@@ -15,8 +15,8 @@ export class LogOutService {
   ) { }
 
   logout(){
-    this.storage.removeItem('AuthDetails');
     this.authState.setAuthState(this.authState.initialState());
+    this.storage.removeItem('AuthDetails');
     this.router.navigate(['/login'])
   }
 }

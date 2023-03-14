@@ -13,7 +13,7 @@ import { FacadeStockDataService } from '../../facades/facade-stock-data.service'
 export class DashbordComponent implements OnInit {
 
   constructor(
-    private readonly Storage:LocalStorageService,
+    private readonly storage:LocalStorageService,
     private readonly facadeApplicationService:FacadeApplicationStateService,
     private readonly facadeStockData:FacadeStockDataService
     ) { }
@@ -21,7 +21,7 @@ export class DashbordComponent implements OnInit {
 
 
   ngOnInit(): void {
-    let cachedAuthDetails:string=this.Storage.getItem('AuthDetails');
+    let cachedAuthDetails:string=this.storage.getItem('AuthDetails');
     if (cachedAuthDetails!=null){
     let cachedAuthDetailsObject:CachedUserAuthDetails=JSON.parse(cachedAuthDetails);
       let userId:number=cachedAuthDetailsObject.payload.id
