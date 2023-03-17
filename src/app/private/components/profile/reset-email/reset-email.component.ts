@@ -15,7 +15,7 @@ export class ResetEmailComponent implements OnInit{
   }
   ResetEmail(formData:any){
     console.log(formData.current_email)
-    this.facadeProfileAccount.resetEmail(formData.current_email,formData.new_email)
+    this.facadeProfileAccount.resetEmail(formData.current_email,formData.new_email)?.subscribe()
     this.approvalMessage$=this.facadeProfileAccount.approvalMessage$
   }
 }

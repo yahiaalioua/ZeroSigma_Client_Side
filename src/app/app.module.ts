@@ -24,7 +24,7 @@ import { DisplayValuationComponent } from './private/ui/display-valuation-ui/dis
 import { StockGraphComponent } from './private/ui/stock-graph-ui/stock-graph.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SearchPipe } from './shared/pipes/search.pipe';
 import { DatePipe } from '@angular/common';
 import { SearchSmartComponent } from './private/components/search-smart-component/search-smart.component';
@@ -36,6 +36,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { DashbordComponent } from './private/components/dashbord/dashbord.component';
 import { NavBarComponent } from './private/ui/nav-bar-ui/nav-bar.component';
 import { LoginComponent } from './public/components/login/login.component';
+import { SessionInterceptor } from './core/services/session.interceptor';
 
 
 
@@ -87,10 +88,13 @@ import { LoginComponent } from './public/components/login/login.component';
     MatSnackBarModule
 
   ],
-  providers:[DatePipe,{
+  providers:[
+    DatePipe,{
     provide:ErrorHandler,
     useClass:CustomErrorHandlerService,
-  }],
+  },
+  {provide:HTTP_INTERCEPTORS,useClass:SessionInterceptor,multi:true}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

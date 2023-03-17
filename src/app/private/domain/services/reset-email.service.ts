@@ -36,7 +36,7 @@ export class ResetEmailService {
         return of(null)
       }))
   }
-  ResetEmail(CurrentEmail:string,NewEmail:string):void{
+  ResetEmail(CurrentEmail:string,NewEmail:string){
     let userDetails:string|null=localStorage.getItem('AuthDetails');
     if(!userDetails){
       return
@@ -45,13 +45,14 @@ export class ResetEmailService {
       const CachedUserDetails:CachedUserAuthDetails=JSON.parse(userDetails);
       const UserId=CachedUserDetails.payload.id
       if(CachedUserDetails.payload.email===CurrentEmail){
-        this.putEmail(UserId,NewEmail).subscribe()
         this.store.setState({...this.store.getApplicationState(),UserCredentials:{...this.store.getApplicationState().UserCredentials,email:NewEmail}});
+        return this.putEmail(UserId,NewEmail)
       }
       else if(CachedUserDetails.payload.email!=CurrentEmail){
         this.approvalMessage.next('current email is wrong')
       }
       else return;
     }
+    return
   }
 }

@@ -23,7 +23,7 @@ export class ApplicationStateService {
     ) { }
 
   setApplicationUserState$(id:number){
-    return this.httpDatabaseService.GetUserById(id).pipe(map((UserData:userInfoResponse)=>{
+    return this.httpDatabaseService.getAccountInfo(id).pipe(map((UserData:userInfoResponse)=>{
         this.store.setState({...this.store.getApplicationState(),UserCredentials:{
           ...this.store.getApplicationState().UserCredentials, fullName:UserData.name,
           email:UserData.email,id:UserData.id

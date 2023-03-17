@@ -46,9 +46,22 @@ export class AccountSettingsService {
     else{
       const CachedUserDetails:CachedUserAuthDetails=JSON.parse(userDetails);
       const UserId=CachedUserDetails.payload.id
-      this.putName(UserId,name).subscribe()
-        this.store.setState({...this.store.getApplicationState(),UserCredentials:{...this.store.getApplicationState().UserCredentials,fullName:name}});
+      this.store.setState({...this.store.getApplicationState(),
+      UserCredentials:{...this.store.getApplicationState().UserCredentials,fullName:name}});
+      return this.putName(UserId,name)
       }
   }
 
+  delateAccount(){
+    let userDetails:string|null=localStorage.getItem('AuthDetails');
+    if(!userDetails){
+      return
+    }
+    else{
+      const CachedUserDetails:CachedUserAuthDetails=JSON.parse(userDetails);
+      const UserId=CachedUserDetails.payload.id
+      this.httpDatabase.delateAccount(UserId).subscribe()
+        this.store.setState({...this.store.InitialState});
+      }
+  }
 }

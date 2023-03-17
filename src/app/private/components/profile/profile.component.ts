@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable} from 'rxjs';
-import { ModalService } from 'src/app/Shared/services/modal.service';
+import { ModalService } from 'src/app/shared/services/modal.service';
 import { FacadeProfileAccountSettingsService } from '../../facades/facade-profile-account-settings.service';
 
 @Component({

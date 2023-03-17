@@ -10,7 +10,7 @@ export class LocalStorageService {
     // if json, stringify it
     localStorage.setItem(key, JSON.stringify(value));
   }
-  getItem(key: string): any {
+  getItem(key: string) :any{
     // detect and parse json later
     return localStorage.getItem(key);
   }

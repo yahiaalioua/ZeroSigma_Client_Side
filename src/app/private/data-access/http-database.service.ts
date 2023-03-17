@@ -10,19 +10,27 @@ export class HttpDatabaseService {
   constructor(private http:HttpClient) { }
   putEmailUrl:string='https://localhost:7063/api/users/email/'
   putNameUrl:string='https://localhost:7063/api/users/name/'
-  GetUserDataUrl:string='https://localhost:7063/api/users/'
+  getAccountInfoUrl:string='https://localhost:7063/api/users/account/info/'
+  delateAccountUrl:string='https://localhost:7063/api/users/'
+  getIntrinsicValueUrl:string='https://localhost:7063/api/intrinsic-value?ticker='
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   }
 
-  GetUserById(Id:number):Observable<any>{
-    return this.http.get(`${this.GetUserDataUrl}${Id}`)
+  getAccountInfo(Id:number):Observable<any>{
+    return this.http.get(`${this.getAccountInfoUrl}${Id}`)
   }
   putEmail(id:number,email:string){
     return this.http.put(`${this.putEmailUrl}${id}`,JSON.stringify(email),this.httpOptions)
   }
   putName(id:number,name:string){
     return this.http.put(`${this.putNameUrl}${id}`,JSON.stringify(name),this.httpOptions)
+  }
+  delateAccount(id:number){
+    return this.http.delete(`${this.delateAccountUrl}${id}`)
+  }
+  getIntrinsicValue(ticker:string){
+    return this.http.get(`${this.getIntrinsicValueUrl}${ticker}`)
   }
 }
