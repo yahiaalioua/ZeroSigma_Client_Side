@@ -61,10 +61,16 @@ h5{
   align-items: center;
 }
 h1{
-  color: rgb(5, 51, 0);
+  color: rgb(0, 92, 158);
   font-weight: bold;
   letter-spacing: 1px;
   text-align: center;
+}
+.valuation-div h2{
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  color: rgb(67, 67, 67);
 }
 .ticker-stock-div h2{
   color: rgb(206, 206, 206);

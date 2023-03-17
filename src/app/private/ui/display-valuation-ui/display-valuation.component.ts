@@ -16,6 +16,7 @@ export class DisplayValuationComponent {
   @Input()date?:Observable<Date>;
   @Input()name?:Observable<string>;
   @Input()tickr?:Observable<string>;
+  @Input()intrinsicValue?:Observable<number>
   @Input()chartOptions:any;
   @Input()chartData:any;
 

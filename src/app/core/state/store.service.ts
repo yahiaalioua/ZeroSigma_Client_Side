@@ -32,6 +32,9 @@ export class StoreService {
       date:new Date(),
       change:0,
       series:[]
+    },
+    Valuation:{
+      intrinsicValue:0
     }
   }
 

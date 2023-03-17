@@ -18,6 +18,8 @@ export class FacadeProfileAccountSettingsService {
 
   userCredentials$=this.profileSettings.userCredentials$
   userInfo$=this.profileSettings.userInfo$
+  approvalMessage$:Observable<string>=this.resetEmailService.approvalMessage$
+  deleteUserMessage$:Observable<string>=this.accountSettings.delateUserMessage$
 
   updateName(name:string){
     return this.accountSettings.updateName(name)
@@ -26,10 +28,10 @@ export class FacadeProfileAccountSettingsService {
     return this.profileSettings.updateUserInfo(userInfo)
   }
 
-  approvalMessage$:Observable<string>=this.resetEmailService.approvalMessage$
-  approvalMessageDelate:string=this.resetEmailService.approvalMessageDelate
-
   resetEmail(currentEmail:string,newEmail:string){
     return this.resetEmailService.ResetEmail(currentEmail,newEmail)
+  }
+  delateAccount(password:string){
+    return this.accountSettings.delateAccount(password)
   }
 }

@@ -12,7 +12,6 @@ export class ResetEmailService {
 
   approvalMessage:BehaviorSubject<string>=new BehaviorSubject<string>("")
   approvalMessage$:Observable<string>=this.approvalMessage.asObservable()
-  approvalMessageDelate:string=''
 
   constructor(
     private store:StoreService,

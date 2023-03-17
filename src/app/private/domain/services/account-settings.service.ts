@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, delay, map, Observable, of, switchMap, tap } from 'rxjs';
 import { LocalStorageService } from 'src/app/Shared/services/local-storage.service';
 import { StoreService } from 'src/app/core/state/store.service';
 import { HttpDatabaseService } from '../../data-access/http-database.service';
 import { CachedUserAuthDetails } from '../../models/cached-data';
+import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
+
 
 
 @Injectable({
@@ -13,11 +15,14 @@ export class AccountSettingsService {
 
   userCredentials$=this.store.applicationState$.pipe(map(state=>state.UserCredentials));
   userInfo$=this.store.applicationState$.pipe(map(state=>state.Userinfo));
+  delateUserMessage:BehaviorSubject<string>=new BehaviorSubject<string>('');
+  delateUserMessage$:Observable<string>=this.delateUserMessage.asObservable();
 
   constructor(
     private store:StoreService,
     private httpDatabase:HttpDatabaseService,
-    private storage:LocalStorageService
+    private storage:LocalStorageService,
+    private readonly facadeAuth:FacadeAuthService
     ) {}
 
   putName(id:number,name:string){
@@ -52,16 +57,20 @@ export class AccountSettingsService {
       }
   }
 
-  delateAccount(){
+  delateAccount(password:string){
     let userDetails:string|null=localStorage.getItem('AuthDetails');
     if(!userDetails){
       return
     }
     else{
-      const CachedUserDetails:CachedUserAuthDetails=JSON.parse(userDetails);
-      const UserId=CachedUserDetails.payload.id
-      this.httpDatabase.delateAccount(UserId).subscribe()
-        this.store.setState({...this.store.InitialState});
-      }
+      const CachedUserAuthDetails:CachedUserAuthDetails=JSON.parse(userDetails);
+      const UserId=CachedUserAuthDetails.payload.id
+      return this.httpDatabase.verifyPassword(UserId,password).pipe(switchMap(()=>{
+        this.delateUserMessage.next('Account succesfully delated, you will be logged out')
+        return this.httpDatabase.delateAccount(UserId).pipe(delay(6000),map(()=>this.facadeAuth.logout()))
+      }),catchError(err=>{
+        this.delateUserMessage.next('Wrong Password')
+        return of(null)
+      }))
   }
-}
+}}

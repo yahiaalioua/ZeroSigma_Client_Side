@@ -13,9 +13,9 @@
       <app-stock-graph [getChartOptions]="chartOptions" [chartData]="chartData" ></app-stock-graph>
     </div>
     <div class="valuation-div">
-      <h2>{{(tickr|async)}} intristic value:</h2>
-      <h1>120 USD</h1>
-      <p>The intrinsic value of one {{(tickr|async)}} stock under our scenario is 123 USD. Compared to the current market price of 115 USD,<span> {{tickr|async}} is undervalued by 11%.</span></p>
+      <h2><b>{{(tickr|async)}}</b> intristic value:</h2>
+      <h1>{{(intrinsicValue|async)|number:'1.0-0'}}USD</h1>
+      <p>The intrinsic value of one {{(tickr|async)}} stock under our scenario is {{(intrinsicValue|async)|number:'1.0-0'}} USD. Compared to the current market price of {{(price|async)}} USD,<span> {{tickr|async}} is undervalued by 11%.</span></p>
     </div>
   </ng-container>
 </div>

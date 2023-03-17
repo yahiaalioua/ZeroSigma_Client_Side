@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Observable, tap } from 'rxjs';
+import { FacadeProfileAccountSettingsService } from 'src/app/private/facades/facade-profile-account-settings.service';
 
 
 @Component({
@@ -9,32 +11,19 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class DelateAccountComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DelateAccountComponent>) { }
-  approvalMessage:string|undefined;
+  constructor(
+    public dialogRef: MatDialogRef<DelateAccountComponent>,
+    public readonly facadeProfileAccount:FacadeProfileAccountSettingsService
+    ) { }
+  deleteUserMessage$?:Observable<string>;
 
   ngOnInit(): void {
+    this.deleteUserMessage$=this.facadeProfileAccount.deleteUserMessage$
   }
 
 
   delateAccount(delateForm:any){
-    console.log(delateForm.password)
-    let userDetails:any=localStorage.getItem('details');
-    userDetails=JSON.parse(userDetails);
-    if(!userDetails){
-      return
-    }
-    else{
-      if(userDetails.password===delateForm.password){
-
-        this.dialogRef.close();
-      }
-      else if(delateForm.password==undefined || delateForm.password=='' || delateForm.password==null){
-        this.approvalMessage='enter your password'
-      }
-      else if(delateForm.password !=userDetails.password){
-        this.approvalMessage='You entered a wrong password'
-      }
-    }
+    this.facadeProfileAccount.delateAccount(delateForm.password)?.pipe(tap(()=>this.dialogRef.close()))?.subscribe()
   }
 
 }

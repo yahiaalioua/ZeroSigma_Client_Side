@@ -1,11 +1,8 @@
 import { Component} from '@angular/core';
-import { combineLatest, distinctUntilChanged, forkJoin, map, merge, Observable, shareReplay, switchMap, tap } from 'rxjs';
+import { distinctUntilChanged,map, Observable,} from 'rxjs';
 import { ChartService } from 'src/app/private/domain/charts/chart.service';
-import { StockDataHelperService } from 'src/app/core/services/utils/stock-data-helper.service';
 import { FacadeStockDataService } from '../../facades/facade-stock-data.service';
-import { StoreService } from 'src/app/core/state/store.service';
-import { HttpFinancialModelingApiService } from '../../data-access/http-financial-modeling-api.service';
-import { StockDataState } from 'src/app/core/models/application-state';
+import { StockDataState, Valuation } from 'src/app/core/models/application-state';
 
 
 @Component({
@@ -21,12 +18,10 @@ export class CalculateValueComponent {
   date?:Observable<Date>;
   name?:Observable<string>;
   tickr?:Observable<string>;
+  intrinsicValue?:Observable<number>;
   constructor(
-    private readonly httpData:StockDataHelperService,
     private readonly facadeStockData:FacadeStockDataService,
     private readonly chartService:ChartService,
-    private readonly store:StoreService,
-    private test:HttpFinancialModelingApiService
     ) { }
 
   chartOptions:any=this.chartService.chartOption
@@ -39,6 +34,7 @@ export class CalculateValueComponent {
     this.data=this.facadeStockData.getStockDataState()
     this.name=this.facadeStockData.getStockDataState().pipe(map((data:StockDataState)=>data.companyName),distinctUntilChanged())
     this.tickr=this.facadeStockData.getStockDataState().pipe(map((data:StockDataState)=>data.ticker),distinctUntilChanged())
+    this.intrinsicValue=this.facadeStockData.getValuationDataState().pipe(map((data:Valuation)=>data.intrinsicValue),distinctUntilChanged())
 
   }
   click(){

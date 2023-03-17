@@ -12,11 +12,16 @@ import { AuthDetails } from '../models/auth-details';
 import { SessionService } from './session.service';
 import { dateFormat } from 'highcharts';
 import { AuthResponse } from 'src/app/auth/models/auth-response';
+import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
 
 @Injectable()
 export class SessionInterceptor implements HttpInterceptor {
 
-  constructor(private storage:LocalStorageService,private sessionService:SessionService) {}
+  constructor(
+    private readonly storage:LocalStorageService,
+    private readonly sessionService:SessionService,
+    private readonly authFacade:FacadeAuthService
+    ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let authDetails:string|null= this.storage.getItem('AuthDetails')
@@ -46,7 +51,10 @@ export class SessionInterceptor implements HttpInterceptor {
         request=request.clone({
           setHeaders:{Authorization:`Bearer ${data.accessToken}`}
         })
-        return next.handle(request).pipe(catchError(err=>of(null)))
+        return next.handle(request).pipe(catchError(err=>{
+          this.authFacade.logout();
+          return of(null)
+        }))
       }))
   }
 }

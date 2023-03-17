@@ -8,6 +8,9 @@ export type Userinfo={
   About_me?:string;
 
 }
+export type Valuation={
+  intrinsicValue:number
+}
 export type StockDataState={
   price:number,
   companyName:string,
@@ -29,6 +32,7 @@ export interface ApplicationState {
   UserCredentials:UserCredentials,
   Userinfo:Userinfo,
   UserStatus:UserStatus,
-  StockData:StockDataState
+  StockData:StockDataState,
+  Valuation:Valuation
 }
 

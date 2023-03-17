@@ -32,4 +32,10 @@ export class FacadeStockDataService {
   getStockDataState(){
     return this.applicationStateService.getStockDataState()
   }
+  setValuationDataState(){
+    return this.applicationStateService.setValuationDataState()
+  }
+  getValuationDataState(){
+    return this.applicationStateService.getValuationDataState()
+  }
 }

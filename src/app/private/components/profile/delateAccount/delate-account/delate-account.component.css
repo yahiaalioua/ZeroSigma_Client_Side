@@ -5,8 +5,7 @@
   justify-content: space-between;
 }
 .warning-h3{
-  color: rgb(51, 54, 78);
-  font-weight: 900;
+  color: rgb(183, 224, 255);
 }
 .fields{
   display: flex;

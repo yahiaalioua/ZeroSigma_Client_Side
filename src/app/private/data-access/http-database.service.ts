@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +14,8 @@ export class HttpDatabaseService {
   getAccountInfoUrl:string='https://localhost:7063/api/users/account/info/'
   delateAccountUrl:string='https://localhost:7063/api/users/'
   getIntrinsicValueUrl:string='https://localhost:7063/api/intrinsic-value?ticker='
+  // verify password
+  getPasswordUrl:string='https://localhost:7063/api/users/password'
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -32,5 +35,8 @@ export class HttpDatabaseService {
   }
   getIntrinsicValue(ticker:string){
     return this.http.get(`${this.getIntrinsicValueUrl}${ticker}`)
+  }
+  verifyPassword(id:number,password:string){
+    return this.http.get(`${this.getPasswordUrl}?id=${id}&password=${password}`)
   }
 }

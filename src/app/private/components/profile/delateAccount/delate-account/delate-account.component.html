@@ -7,7 +7,7 @@
     <p>Confirm your password to proceed</p>
     <label for="current-email">Current Password</label>
     <input type="password" name="password" ngModel>
-    <small>{{approvalMessage}}</small>
+    <small>{{deleteUserMessage$|async}}</small>
   </div>
   <div mat-dialog-actions class=".btn-container">
     <button class="btn-delate">Delate</button>

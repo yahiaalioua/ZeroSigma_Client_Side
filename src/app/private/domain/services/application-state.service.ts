@@ -46,13 +46,24 @@ export class ApplicationStateService {
           }})),
       )))
   }
+  getStockDataState(){
+    return this.store.applicationState$.pipe(map((state:ApplicationState)=>state.StockData))
+  }
+  setValuationDataState(){
+    return this.stockDataHelper.UserSearchData$.pipe(switchMap((ticker=>
+      this.httpDatabaseService.getIntrinsicValue(ticker).pipe(map((data:any)=>
+        this.store.setState({...this.store.getApplicationState(),Valuation:{
+          ...this.store.getApplicationState().Valuation,intrinsicValue:data
+        }})
+        )))))
+  }
+  getValuationDataState(){
+    return this.store.applicationState$.pipe(map((state:ApplicationState)=>state.Valuation))
+  }
   setLocalStorageState(){
     const LocalStorageData:string=this.storage.getItem('AuthDetails')
     const LocalStorageState:localStorageState=JSON.parse(LocalStorageData);
     this.store.setLocalStorageState(LocalStorageState);
-  }
-  getStockDataState(){
-    return this.store.applicationState$.pipe(map((state:ApplicationState)=>state.StockData))
   }
 
 }
