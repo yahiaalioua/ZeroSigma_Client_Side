@@ -9,7 +9,8 @@ export type Userinfo={
 
 }
 export type Valuation={
-  intrinsicValue:number
+  intrinsicValue:number,
+  percentageDifference:number
 }
 export type StockDataState={
   price:number,

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { shareReplay } from 'rxjs';
 import { Observable } from 'rxjs';
 
 
@@ -34,7 +35,7 @@ export class HttpDatabaseService {
     return this.http.delete(`${this.delateAccountUrl}${id}`)
   }
   getIntrinsicValue(ticker:string){
-    return this.http.get(`${this.getIntrinsicValueUrl}${ticker}`)
+    return this.http.get(`${this.getIntrinsicValueUrl}${ticker}`).pipe(shareReplay({refCount: true }))
   }
   verifyPassword(id:number,password:string){
     return this.http.get(`${this.getPasswordUrl}?id=${id}&password=${password}`)

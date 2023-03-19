@@ -34,7 +34,8 @@ export class StoreService {
       series:[]
     },
     Valuation:{
-      intrinsicValue:0
+      intrinsicValue:0,
+      percentageDifference:0
     }
   }
 

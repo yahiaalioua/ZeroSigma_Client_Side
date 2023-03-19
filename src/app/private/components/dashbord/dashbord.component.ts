@@ -29,7 +29,8 @@ export class DashbordComponent implements OnInit {
     }
     this.facadeApplicationService.setLocalStorageState()
     this.facadeStockData.setStockDataState().subscribe()
-    this.facadeStockData.setValuationDataState().subscribe()
+    this.facadeStockData.setIntrinsicValueDataState().subscribe()
+    this.facadeStockData.setPercentPriceDifferenceDataState().subscribe()
 
   }
 

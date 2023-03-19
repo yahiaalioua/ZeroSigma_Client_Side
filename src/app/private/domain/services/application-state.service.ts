@@ -8,6 +8,7 @@ import { localStorageState } from '../../../core/models/local-storage-state';
 import { StoreService } from '../../../core/state/store.service';
 import { HttpDatabaseService } from '../../data-access/http-database.service';
 import { HttpFinancialModelingApiService } from '../../data-access/http-financial-modeling-api.service';
+import { FinancialDataModelingService } from './financial-data-modeling.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class ApplicationStateService {
     private store:StoreService,
     private storage:LocalStorageService,
     private readonly httpFinancialModelingApi:HttpFinancialModelingApiService,
+    private readonly financialDataModeling:FinancialDataModelingService,
     private readonly stockDataHelper:StockDataHelperService,
     ) { }
 
@@ -49,11 +51,19 @@ export class ApplicationStateService {
   getStockDataState(){
     return this.store.applicationState$.pipe(map((state:ApplicationState)=>state.StockData))
   }
-  setValuationDataState(){
+  setIntrinsicValueDataState(){
     return this.stockDataHelper.UserSearchData$.pipe(switchMap((ticker=>
       this.httpDatabaseService.getIntrinsicValue(ticker).pipe(map((data:any)=>
         this.store.setState({...this.store.getApplicationState(),Valuation:{
           ...this.store.getApplicationState().Valuation,intrinsicValue:data
+        }})
+        )))))
+  }
+  setPercentageDifferenceDataState(){
+    return this.stockDataHelper.UserSearchData$.pipe(switchMap((ticker=>
+      this.financialDataModeling.stockPricePercentageDifference(ticker).pipe(map((data:any)=>
+        this.store.setState({...this.store.getApplicationState(),Valuation:{
+          ...this.store.getApplicationState().Valuation,percentageDifference:data
         }})
         )))))
   }

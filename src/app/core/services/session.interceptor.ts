@@ -10,8 +10,6 @@ import { catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { LocalStorageService } from 'src/app/Shared/services/local-storage.service';
 import { AuthDetails } from '../models/auth-details';
 import { SessionService } from './session.service';
-import { dateFormat } from 'highcharts';
-import { AuthResponse } from 'src/app/auth/models/auth-response';
 import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
 
 @Injectable()

@@ -17,8 +17,10 @@ export class DisplayValuationComponent {
   @Input()name?:Observable<string>;
   @Input()tickr?:Observable<string>;
   @Input()intrinsicValue?:Observable<number>
+  @Input()diffFromCurrentPrice?:Observable<number>;
   @Input()chartOptions:any;
   @Input()chartData:any;
+
 
 
 }

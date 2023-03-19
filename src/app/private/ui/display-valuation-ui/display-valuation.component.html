@@ -3,7 +3,7 @@
     <div class="stock-info-1">
       <div class="ticker-stock-div">
         <p>Price: {{(price|async)|currency : 'USD' : 'symbol' : '1.2-2'}}</p>
-        <h5>{{(change|async)}}%</h5>
+        <h5 [ngClass]="{red: (change|async)!<0 , green:(change|async)!>0}">{{(change|async)}}%</h5>
         <p>{{(name|async)}}</p>
         <p>{{(tickr|async)}}</p>
         <p class="date">Updated {{(date|async)|date:'mediumDate'}}</p>
@@ -15,7 +15,7 @@
     <div class="valuation-div">
       <h2><b>{{(tickr|async)}}</b> intristic value:</h2>
       <h1>{{(intrinsicValue|async)|number:'1.0-0'}}USD</h1>
-      <p>The intrinsic value of one {{(tickr|async)}} stock under our scenario is {{(intrinsicValue|async)|number:'1.0-0'}} USD. Compared to the current market price of {{(price|async)}} USD,<span> {{tickr|async}} is undervalued by 11%.</span></p>
+      <p>The intrinsic value of one {{(tickr|async)}} stock under our scenario is {{(intrinsicValue|async)|number:'1.0-0'}} USD. Compared to the current market price of {{(price|async)}} USD,<span> {{tickr|async}} is {{(price|async)! > (diffFromCurrentPrice|async)! ?'Overvalued':'Undervalued'}} by {{(diffFromCurrentPrice|async)|number:'1.0-0'}}%.</span></p>
     </div>
   </ng-container>
 </div>

@@ -71,7 +71,7 @@ import { SessionInterceptor } from './core/services/session.interceptor';
     ToastComponent,
     SpinnerComponent,
     DashbordComponent,
-    NavBarComponent
+    NavBarComponent,
 
   ],
   imports: [

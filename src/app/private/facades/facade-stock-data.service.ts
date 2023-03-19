@@ -32,8 +32,11 @@ export class FacadeStockDataService {
   getStockDataState(){
     return this.applicationStateService.getStockDataState()
   }
-  setValuationDataState(){
-    return this.applicationStateService.setValuationDataState()
+  setIntrinsicValueDataState(){
+    return this.applicationStateService.setIntrinsicValueDataState()
+  }
+  setPercentPriceDifferenceDataState(){
+    return this.applicationStateService.setPercentageDifferenceDataState()
   }
   getValuationDataState(){
     return this.applicationStateService.getValuationDataState()

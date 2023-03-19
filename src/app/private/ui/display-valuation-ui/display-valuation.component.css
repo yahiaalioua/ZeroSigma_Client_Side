@@ -81,7 +81,14 @@ h1{
   font-size: 1em;
 }
 .valuation-div span{
-  color: #008465;
+  color: #6d0000;
   font-size: 1.2em;
-  font-weight: 700;
+  font-weight: 500;
 }
+.green{
+  color: #00ff51;
+}
+.red{
+  color: #ff0000;
+}
+
