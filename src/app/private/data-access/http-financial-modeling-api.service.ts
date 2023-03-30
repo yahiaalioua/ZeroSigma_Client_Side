@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs';
 import { catchError, combineLatest, forkJoin, map, Observable, shareReplay, switchMap, zip} from 'rxjs';
 import { StockDataHelperService } from 'src/app/core/services/utils/stock-data-helper.service';
 import { StoreService } from 'src/app/core/state/store.service';
@@ -33,13 +34,12 @@ export class HttpFinancialModelingApiService {
     return this.http.get<StockData>(`${this.stockHisoricalDataUrl}${ticker}?apikey=${this.apiKey}`)
   }
   searchCompany$(ticker:string): Observable<any>{
-    return this.searchCompany(ticker).pipe(shareReplay({refCount: true }), map(
+    return this.searchCompany(ticker).pipe(map(
       (data:any)=> {
        const Ticker=data[0].symbol
        const Name=data[0].name
        if(Ticker!=undefined||null){
-        this.stockDataHelper.lastTikerData.next({ticker:Ticker})
-        this.stockDataHelper.companyInfo.next(data[0])
+        this.stockDataHelper.lastTikerData.next(data[0].symbol)
         this.store.setState({...this.store.getApplicationState(),StockData:{...this.store.getApplicationState().StockData,ticker:Ticker,companyName:Name}})
         return {ticker:Ticker,companyName:Name}
        }
@@ -50,24 +50,23 @@ export class HttpFinancialModelingApiService {
           return this.stockDataHelper.lastTikerData$
         }
       )
-    )
+      ,shareReplay({refCount: true }))
   }
 
   stockData$(ticker:string):Observable<StockData[]>{
     return this.searchCompany$(ticker).pipe(switchMap((data:any)=>this.http.get<StockData>
-      (`https://financialmodelingprep.com/api/v3/historical-price-full/${data.ticker}?apikey=${this.apiKey}`).pipe(shareReplay({refCount: true }),
+      (`https://financialmodelingprep.com/api/v3/historical-price-full/${data.ticker}?apikey=${this.apiKey}`).pipe(
       map((data:any)=>data.historical.slice(0,30).map((val:any)=>{
         let date=this.datePipe.transform(val.date,'longDate')
         let stockData:StockData={y:val.close, x:date,change:val.change}
-        this.stockDataHelper.stockData.next(data.historical[0])
         return stockData
       })
-    ))))
+    ),shareReplay({refCount: true }))))
   };
 
   mergedStockCompanyData(ticker:string){
     return forkJoin([this.stockData$(ticker),this.searchCompany$(ticker)]).pipe(
-      map((arr1,arr2)=>arr1)
+      map((arr1,arr2)=>arr1),shareReplay({refCount: true })
     )
   }
 }

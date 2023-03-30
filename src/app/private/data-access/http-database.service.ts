@@ -16,7 +16,8 @@ export class HttpDatabaseService {
   delateAccountUrl:string='https://localhost:7063/api/users/'
   getIntrinsicValueUrl:string='https://localhost:7063/api/intrinsic-value?ticker='
   // verify password
-  getPasswordUrl:string='https://localhost:7063/api/users/password'
+  //beta endpoint need to make this secure
+  getPasswordUrl:string='https://localhost:7063/api/users/session/credentials'
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -37,6 +38,7 @@ export class HttpDatabaseService {
   getIntrinsicValue(ticker:string){
     return this.http.get(`${this.getIntrinsicValueUrl}${ticker}`).pipe(shareReplay({refCount: true }))
   }
+  //beta endpoint need to make this secure
   verifyPassword(id:number,password:string){
     return this.http.get(`${this.getPasswordUrl}?id=${id}&password=${password}`)
   }

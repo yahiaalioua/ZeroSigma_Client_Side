@@ -1,6 +1,6 @@
 <div class="search-results-wrapper">
   <div class="search-container">
-    <input type="search" placeholder="search for a company" [formControl]="searchInput" #input>
+    <input type="search" placeholder="search for a company tiker" [formControl]="searchInput" #input>
     <mat-icon class="search-icon" (click)="sendInputData()">search</mat-icon>
   </div>
   <ng-container *ngFor="let companies of Companies$|async">

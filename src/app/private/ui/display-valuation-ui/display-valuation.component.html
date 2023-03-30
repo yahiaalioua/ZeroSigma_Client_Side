@@ -3,7 +3,7 @@
     <div class="stock-info-1">
       <div class="ticker-stock-div">
         <p>Price: {{(price|async)|currency : 'USD' : 'symbol' : '1.2-2'}}</p>
-        <h5 [ngClass]="{red: (change|async)!<0 , green:(change|async)!>0}">{{(change|async)}}%</h5>
+        <h5 [ngClass]="{red: (change|async)!<0 , green:(change|async)!>0}">{{(change|async)! > 0 ?'+':''}}{{(change|async)}}%</h5>
         <p>{{(name|async)}}</p>
         <p>{{(tickr|async)}}</p>
         <p class="date">Updated {{(date|async)|date:'mediumDate'}}</p>
