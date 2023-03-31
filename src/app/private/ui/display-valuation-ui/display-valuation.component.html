@@ -15,8 +15,9 @@
     <div class="valuation-div">
       <h2><b>{{(tickr|async)}}</b> intristic value:</h2>
       <h1>{{(intrinsicValue|async)|number:'1.0-0'}}USD</h1>
-      <p>The intrinsic value of one {{(tickr|async)}} stock under our scenario is {{(intrinsicValue|async)|number:'1.0-0'}} USD. Compared to the current market price of {{(price|async)}} USD,<span> {{tickr|async}} is {{(price|async)! > (diffFromCurrentPrice|async)! ?'Overvalued':'Undervalued'}} by {{(diffFromCurrentPrice|async)|number:'1.0-0'}}%.</span></p>
+      <p>The intrinsic value of one {{(tickr|async)}} stock under our scenario is {{(intrinsicValue|async)|number:'1.0-0'}} USD. Compared to the current market price of {{(price|async)}} USD,<span [ngClass]="{overvalued:(price|async)! > (intrinsicValue|async)! , undervalued:(price|async)! < (intrinsicValue|async)!}">{{tickr|async}} is {{(price|async)! > (intrinsicValue|async)! ?'Overvalued':'Undervalued'}} by {{(diffFromCurrentPrice|async)|number:'1.0-0'}}%.</span></p>
     </div>
   </ng-container>
 </div>
+
 

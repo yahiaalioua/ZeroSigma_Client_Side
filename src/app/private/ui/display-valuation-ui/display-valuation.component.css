@@ -81,9 +81,14 @@ h1{
   font-size: 1em;
 }
 .valuation-div span{
-  color: #6d0000;
   font-size: 1.2em;
   font-weight: 500;
+}
+.overvalued{
+  color:  rgb(105, 0, 0);
+}
+.undervalued{
+  color: rgb(32, 69, 46);
 }
 .green{
   color: #00ff51;

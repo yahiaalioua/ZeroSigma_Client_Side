@@ -38,7 +38,7 @@ export class ApplicationStateService {
   }
 
   setStockDataState(){
-    return this.stockDataHelper.UserSearchData$.pipe(
+    return this.stockDataHelper.lastTikerData$.pipe(
       switchMap(data=>this.httpFinancialModelingApi.mergedStockCompanyData(data).pipe(
         map((data:any)=>this.store.setState({
           ...this.store.getApplicationState(),
@@ -52,7 +52,7 @@ export class ApplicationStateService {
     return this.store.applicationState$.pipe(map((state:ApplicationState)=>state.StockData))
   }
   setIntrinsicValueDataState(){
-    return this.stockDataHelper.UserSearchData$.pipe(switchMap((ticker=>
+    return this.stockDataHelper.lastTikerData$.pipe(switchMap((ticker=>
       this.httpDatabaseService.getIntrinsicValue(ticker).pipe(map((data:any)=>
         this.store.setState({...this.store.getApplicationState(),Valuation:{
           ...this.store.getApplicationState().Valuation,intrinsicValue:data
@@ -60,7 +60,7 @@ export class ApplicationStateService {
         )))))
   }
   setPercentageDifferenceDataState(){
-    return this.stockDataHelper.UserSearchData$.pipe(switchMap((ticker=>
+    return this.stockDataHelper.lastTikerData$.pipe(switchMap((ticker=>
       this.financialDataModeling.stockPricePercentageDifference(ticker).pipe(map((data:any)=>
         this.store.setState({...this.store.getApplicationState(),Valuation:{
           ...this.store.getApplicationState().Valuation,percentageDifference:data

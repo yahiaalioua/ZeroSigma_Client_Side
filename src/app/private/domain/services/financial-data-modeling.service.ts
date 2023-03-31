@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { catchError, forkJoin, of, retry } from 'rxjs';
 import { tap } from 'rxjs';
 import { map } from 'rxjs';
 import { HttpDatabaseService } from '../../data-access/http-database.service';
@@ -25,7 +25,9 @@ export class FinancialDataModelingService {
   }
   stockPricePercentageDifference(ticker:string){
     return forkJoin([this.stockPrice(ticker),this.intrinsicValue(ticker)]).pipe(
-      map(((arr:any)=>this.dataTransform.percentageDifference(arr[0],arr[1])))
+      map(((arr:any)=>this.dataTransform.percentageDifference(arr[0],arr[1]))),
+      retry({ count: 2, delay: 500 }),
+      catchError(err=>of(null))
       )
   }
 }

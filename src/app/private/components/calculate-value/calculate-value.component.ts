@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnDestroy} from '@angular/core';
 import { distinctUntilChanged,map, Observable,} from 'rxjs';
 import { ChartService } from 'src/app/private/domain/charts/chart.service';
 import { FacadeStockDataService } from '../../facades/facade-stock-data.service';
@@ -11,7 +11,7 @@ import { FinancialDataModelingService } from '../../domain/services/financial-da
   templateUrl: './calculate-value.component.html',
   styleUrls: ['./calculate-value.component.css']
 })
-export class CalculateValueComponent {
+export class CalculateValueComponent{
 
   data?:Observable<any>;
   price?:Observable<number>;
@@ -40,7 +40,6 @@ export class CalculateValueComponent {
     this.intrinsicValue=this.facadeStockData.getValuationDataState().pipe(map((data:Valuation)=>data.intrinsicValue),distinctUntilChanged())
     this.diffFromCurrentPrice=this.facadeStockData.getValuationDataState().pipe(map((data:Valuation)=>data.percentageDifference),distinctUntilChanged())
   }
-  click(){
-    this.financialDatamodeling.stockPricePercentageDifference('meta').subscribe()
-  }
+
+
 }

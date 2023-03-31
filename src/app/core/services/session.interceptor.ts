@@ -23,7 +23,7 @@ export class SessionInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let authDetails:string|null= this.storage.getItem('AuthDetails')
-    if(authDetails){
+    if(authDetails!=null){
       const AuthDetails=JSON.parse(authDetails)
       const Token=AuthDetails.accessToken
       if(Token){
@@ -38,7 +38,7 @@ export class SessionInterceptor implements HttpInterceptor {
           return this.handleSessionError(request,next)
         }
       }
-      return of(err)
+      return throwError(()=>err)
     }))
 
   }
@@ -51,7 +51,7 @@ export class SessionInterceptor implements HttpInterceptor {
         })
         return next.handle(request).pipe(catchError(err=>{
           this.authFacade.logout();
-          return of(null)
+          return throwError(()=>err)
         }))
       }))
   }

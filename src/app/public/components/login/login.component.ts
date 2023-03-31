@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder,Validators,} from '@angular/forms';
-import { BehaviorSubject, Observable} from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, Subscription} from 'rxjs';
 import { AuthErrorHandlerService } from 'src/app/auth/errors/auth-error-handler.service';
 import { FacadeAuthService } from 'src/app/auth/facade/facade-auth.service';
 import { login } from 'src/app/auth/models/login';
@@ -12,7 +12,7 @@ import { login } from 'src/app/auth/models/login';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
   loginForm:any
   loginData!:login
   registerData:any
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb:FormBuilder,
     private facadeAuth:FacadeAuthService,
     private AuthError:AuthErrorHandlerService) { }
+  Login$?:Subscription;
 
   ngOnInit(): void {
     this.loginForm=this.fb.group({
@@ -41,7 +42,9 @@ export class LoginComponent implements OnInit {
 
 
   Login(data:any){
-    this.facadeAuth.login(data).subscribe()
-    this.isLoading$?.next(true)
+    this.Login$=this.facadeAuth.login(data).subscribe()
+  }
+  ngOnDestroy(): void {
+    this.Login$?.unsubscribe()
   }
 }

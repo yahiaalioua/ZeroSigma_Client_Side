@@ -1,4 +1,4 @@
-import { Component,OnInit} from '@angular/core';
+import { Component,OnDestroy,OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
 import { FacadeProfileAccountSettingsService } from 'src/app/private/facades/facade-profile-account-settings.service';
 
@@ -9,6 +9,7 @@ import { FacadeProfileAccountSettingsService } from 'src/app/private/facades/fac
 })
 export class ResetEmailComponent implements OnInit{
   constructor(private readonly facadeProfileAccount:FacadeProfileAccountSettingsService) {}
+
   approvalMessage$?:Observable<string>;
 
   ngOnInit(): void {

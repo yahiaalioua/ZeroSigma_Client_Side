@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { shareReplay } from 'rxjs';
+import { catchError, of, retry, shareReplay } from 'rxjs';
 import { Observable } from 'rxjs';
 
 
@@ -36,7 +36,10 @@ export class HttpDatabaseService {
     return this.http.delete(`${this.delateAccountUrl}${id}`)
   }
   getIntrinsicValue(ticker:string){
-    return this.http.get(`${this.getIntrinsicValueUrl}${ticker}`).pipe(shareReplay({refCount: true }))
+    return this.http.get(`${this.getIntrinsicValueUrl}${ticker}`).pipe(
+    retry({ count: 2, delay: 500 }),
+    catchError(err=>of(null))
+    )
   }
   //beta endpoint need to make this secure
   verifyPassword(id:number,password:string){

@@ -27,8 +27,8 @@ export class LoginService {
   loadSpinner:BehaviorSubject<boolean>=this.spinner.isLoadding
 
   login({email,password}:login):Observable<any>{
+    this.loadSpinner.next(true)
     return this.httpAuthService.PostSession({email,password}).pipe(
-      shareReplay(),
       map((resp:AuthResponse)=>{
         const AuthResp:AuthResponse=resp
         this.storage.setItem('AuthDetails',AuthResp)
@@ -36,14 +36,12 @@ export class LoginService {
         this.authState.setAuthState({...this.authState.getCurrentState(), UserStatus:{isLoggedIn:true,isLoggedOut:false}
         });
         this.router.navigateByUrl('/dashbord');
-        return resp
-      }),tap(()=>this.loadSpinner.next(false))
+      })
       ,catchError(err=>{
         const ErrorMessage:string=err.error.message
         this.AuthErrService.HandleLoginErrorMessage(ErrorMessage)
         return of(null)
       }),tap(()=>this.loadSpinner.next(false))
     )}
-
 }
 

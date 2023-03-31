@@ -12,7 +12,7 @@ export class StockDataResolver implements Resolve<StockData|unknown> {
 
   constructor(private readonly facadeStockData:FacadeStockDataService,private httpErrorHandler:HttpErrorHandlerService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<StockData|unknown> {
-    return this.facadeStockData.UserSearchData$.pipe(
+    return this.facadeStockData.lastTikerData$.pipe(
       switchMap(data=>this.facadeStockData.stockData(data)),
       catchError(err=>{
         this.httpErrorHandler.HandleResolverError('We apoligize, but our stock data and company valuation is currently unavailable')

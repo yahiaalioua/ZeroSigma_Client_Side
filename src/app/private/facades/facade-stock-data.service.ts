@@ -14,8 +14,8 @@ export class FacadeStockDataService {
     private readonly httpFinancialModelingApi:HttpFinancialModelingApiService,
     private readonly applicationStateService:ApplicationStateService
   ) { }
-  UserSearchData:BehaviorSubject<string>=this.stockDataHelper.UserSearchData
-  UserSearchData$:Observable<string>=this.stockDataHelper.UserSearchData$
+
+  public lastTikerdata=this.stockDataHelper.lastTikerData
   public lastTikerData$:Observable<string>=this.stockDataHelper.lastTikerData$
 
   searchCompany(ticker:string){

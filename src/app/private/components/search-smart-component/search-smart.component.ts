@@ -29,11 +29,11 @@ export class SearchSmartComponent implements OnInit {
     ).subscribe(val=>this.CompaniesSubj$.next(val))
   }
   SendInputData(inputData:string){
-    this.facadeStockData.UserSearchData.next(inputData);
+    this.facadeStockData.lastTikerdata.next(inputData);
     this.facadeStockData.setStockDataState().subscribe()
   }
   SendClickedData(data:string){
-    this.facadeStockData.UserSearchData.next(data)
+    this.facadeStockData.lastTikerdata.next(data)
     this.facadeStockData.setStockDataState().subscribe()
   }
 
